@@ -21,7 +21,6 @@ function Login() {
                 <h1 class="img greeting">Welcome Back!</h1>
                 <h1 class="img underBar">_______</h1>
             </div>
-
         </main>
     );
 }
