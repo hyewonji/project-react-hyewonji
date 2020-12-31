@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/project-react-hyewonji/static/css/main.9d33e11c.chunk.css",
+    "main.js": "/project-react-hyewonji/static/js/main.2b2f0bca.chunk.js",
+    "main.js.map": "/project-react-hyewonji/static/js/main.2b2f0bca.chunk.js.map",
+    "runtime-main.js": "/project-react-hyewonji/static/js/runtime-main.470bee7b.js",
+    "runtime-main.js.map": "/project-react-hyewonji/static/js/runtime-main.470bee7b.js.map",
+    "static/js/2.45e29488.chunk.js": "/project-react-hyewonji/static/js/2.45e29488.chunk.js",
+    "static/js/2.45e29488.chunk.js.map": "/project-react-hyewonji/static/js/2.45e29488.chunk.js.map",
+    "index.html": "/project-react-hyewonji/index.html",
+    "static/css/main.9d33e11c.chunk.css.map": "/project-react-hyewonji/static/css/main.9d33e11c.chunk.css.map",
+    "static/js/2.45e29488.chunk.js.LICENSE.txt": "/project-react-hyewonji/static/js/2.45e29488.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.470bee7b.js",
+    "static/js/2.45e29488.chunk.js",
+    "static/css/main.9d33e11c.chunk.css",
+    "static/js/main.2b2f0bca.chunk.js"
+  ]
+}
