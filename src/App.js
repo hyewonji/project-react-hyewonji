@@ -1,65 +1,36 @@
-import React, { Component } from "react";
-import LoginTemplate from "./components/LoginTemplate";
-import Form from "./components/Form"
+// import { getRoles } from "@testing-library/react";
+import React from "react";
+import { HashRouter, Route } from "react-router-dom";
+import { createGlobalStyle } from 'styled-components';
+import LoginForm from "./components/LoginForm";
+import Login from './routes/Login';
+import Signup from './routes/Signup';
+import Home from './routes/Home';
 
-class App extends Component {
-  id = 1
-  userInfo = {
-    email: 'hyewon@gmail.com',
-    password: '123456'
-  }
-
-  state = {
-    email: '',
-    password: ''
-  }
-
-  handleEmailChange = (e) => {
-    this.setState({
-      email: e.target.value
-    });
-  }
-
-  handlePasswordChange = (e) => {
-    this.setState({
-      password: e.target.value
-    });
-  }
-
-  handleSubmit = () => {
-    const { email, password } = this.state;
-    if (this.state.email === this.userInfo.email && this.state.password === this.userInfo.password) {
-      alert("Login Success!")
-    } else if (this.state.email === this.userInfo.email && this.state.password !== this.userInfo.password) {
-      alert("Check Your Password")
-    } else {
-      alert("Check Your Email")
-    }
-  }
-
-  render() {
-    const { email, password } = this.state;
-    const {
-      handleSubmit,
-      handleEmailChange,
-      handlePasswordChange
-    } = this;
-    return (
-      <LoginTemplate form={<Form
-        email={email}
-        password={password}
-        onEmailChange={handleEmailChange}
-        onPasswordChange={handlePasswordChange}
-        onSubmit={handleSubmit}
-      />}>
-
-      </LoginTemplate>
-    );
-  }
+const GlobalStyle = createGlobalStyle`
+html,
+body{
+  margin:0;
+  width: 100%;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: -webkit-linear-gradient(-1deg, rgb(255, 248, 129), rgb(109, 237, 255));
+  background: linear-gradient(-1deg, rgb(255, 248, 129), rgb(109, 237, 255));
 }
-/*
-component : HTML을 반환하는 함수 
-props : 부모 컴포넌트가 자식 컴포넌트에게 주는 값
-*/
+`
+
+function App () {
+  return (
+    <HashRouter>
+      <GlobalStyle/>
+      <Route path = '/' exact={true} component={Home}></Route>
+      <Route path = '/login' component={Login}></Route>
+      <Route path = '/signup' component={Signup}></Route>
+    </HashRouter>
+  )
+}
+
 
 export default App;
