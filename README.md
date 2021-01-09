@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # project-react-hyewonji
 project-react-hyewonji
 라이브 데모 (V2) : https://minimus-weather.web.app
@@ -5,3 +6,8 @@ project-react-hyewonji
 - https://medium.com/@hamedbaatour/build-a-real-world-beautiful-web-app-with-angular-6-a-to-z-ultimate-guide-2018-part-i-e121dd1d55e
 - https://medium.com/@hamedbaatour/build-a-real-world-beautiful-web-app-with-angular-8-the-ultimate-guide-2019-part-ii-fe70852b2d6d
 Github Repo : https://github.com/hamedbaatour/Minimus
+=======
+#Weather App by React
+
+React JS Fundamentals Project
+>>>>>>> 900122a3f599fd9ffc0bd9ac628cf85d5d0edcbf
