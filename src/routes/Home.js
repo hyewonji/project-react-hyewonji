@@ -1,8 +1,9 @@
 import React from 'react'
+import HomeForm from '../components/HomeForm'
 
 function Home(){
     return (
-        <div>Hello</div>
+        <HomeForm></HomeForm>
     )
 }
 

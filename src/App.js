@@ -2,10 +2,10 @@
 import React from "react";
 import { HashRouter, Route } from "react-router-dom";
 import { createGlobalStyle } from 'styled-components';
-import LoginForm from "./components/LoginForm";
 import Login from './routes/Login';
 import Signup from './routes/Signup';
 import Home from './routes/Home';
+import Add from './routes/Add';
 
 const GlobalStyle = createGlobalStyle`
 html,
@@ -25,9 +25,10 @@ function App () {
   return (
     <HashRouter>
       <GlobalStyle/>
-      <Route path = '/' exact={true} component={Home}></Route>
-      <Route path = '/login' component={Login}></Route>
+      <Route path = '/' exact={true} component={Login}></Route>
+      <Route path = '/home' component={Home}></Route>
       <Route path = '/signup' component={Signup}></Route>
+      <Route path = '/add' component={Add}></Route>
     </HashRouter>
   )
 }
