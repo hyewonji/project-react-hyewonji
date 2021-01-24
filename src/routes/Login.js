@@ -2,7 +2,6 @@
 import React, { Component, Fragment } from "react";
 //import { HashRouter, Route } from "react-router-dom";
 import LoginForm from '../components/LoginForm';
-import { Link } from 'react-router-dom';
 
 
 
@@ -51,7 +50,7 @@ class Login extends Component {
         alert("Password Wrong")
       } else {
         alert("Login succes")
-        return true;
+        return true
       }
     };
   }
