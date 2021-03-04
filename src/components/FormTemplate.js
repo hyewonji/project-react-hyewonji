@@ -61,7 +61,7 @@ const SubmitBtn = styled.input`
 `
 
 const InputImage = styled.div`
-    background: gray;
+    background: #79b8ff;
     width: 70%;
     display: flex;
     flex-direction: column;
@@ -75,22 +75,43 @@ const ChangeToSignup = styled.div`
     text-decoration:none;
 `
 
+const SLink = styled(Link)`
+    color: #FF3A82;
+`
 
-function SignupForm({onEmailChange, onPasswordChange, onSubmit}){
+function isLogin(onPage){
+    if(onPage === 'login'){
+        return true;
+    } else {
+        return false;
+    }
+}
 
+function FormTemplate({onPage, onEmailChange, onPasswordChange, onSubmit}){
+    const Login = isLogin(onPage)
     return (
         <InputMain>
             <InputLeft>
-                <InputForm>
-                    <InputTitle>Signup</InputTitle>
+                <InputForm onSubmit={onSubmit}>
+                    <InputTitle>
+                        { Login ? "Login" : "Signup" }
+                    </InputTitle>
                     <Input type='email' onChange={onEmailChange}></Input>
                     <Input type='password' onChange={onPasswordChange}></Input>
-                    <SubmitBtn type='button' value='Signup' onClick={onSubmit} >
+                    <SubmitBtn 
+                        type='submit' 
+                        value= { Login ? "Login" : "Signup" } >
                     </SubmitBtn>
                 </InputForm>
                 <ChangeToSignup>
-                    <span>Already Have an account?</span>
-                    <Link to='/login' style={{color:'#FF3A82', textDecoration:'none'}}>Login</Link>
+                    { 
+                    Login 
+                    ? "Don't have an account?" 
+                    : "Already Have an account?" 
+                    }
+                    <SLink to={ Login ? '/signup' : '/'} >
+                        { Login ? "Signup" : "Login"}
+                    </SLink>
                 </ChangeToSignup>
             </InputLeft>
             <InputImage></InputImage>
@@ -98,4 +119,4 @@ function SignupForm({onEmailChange, onPasswordChange, onSubmit}){
     )
 }
 
-export default SignupForm;
+export default FormTemplate;
