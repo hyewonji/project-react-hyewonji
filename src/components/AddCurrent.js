@@ -91,7 +91,7 @@ const CurrentWeatherName = styled.div`
 
 
 
-function AddCurrent({ currentWeather, weatherCard }){
+function AddCurrent({ handleSubmit, currentWeather, weatherCard }){
     const today = new Date();
     const dateString = today.toLocaleDateString('en-US',{
         weekday: 'long',
@@ -103,8 +103,8 @@ function AddCurrent({ currentWeather, weatherCard }){
     return(
         <Main>
             <CitySearchWrapper>
-                <SearchCityInputWrapper> 
-                    <SearchCity placeholder="SEARCH CITY"></SearchCity>
+                <SearchCityInputWrapper > 
+                    <SearchCity  placeholder="SEARCH CITY"></SearchCity>
                     <SearchCityBtn>
                         <AiOutlineSearch/>
                     </SearchCityBtn>

@@ -1,9 +1,13 @@
 import React from 'react'
 import HomeForm from '../components/HomeForm'
+import MenuBar from '../components/MenuBar'
 
 function Home(){
     return (
-        <HomeForm></HomeForm>
+        <>
+            <MenuBar></MenuBar>
+            <HomeForm></HomeForm>
+        </>
     )
 }
 

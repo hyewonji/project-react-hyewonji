@@ -1,7 +1,7 @@
 //import { getRoles } from "@testing-library/react";
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 //import { HashRouter, Route } from "react-router-dom";
-import LoginForm from '../components/LoginForm';
+import FormTemplate from '../components/FormTemplate';
 
 
 
@@ -32,6 +32,7 @@ class Login extends Component {
   
   handleSubmit = () => {
     const {email, password, userInfo} = this.state;
+
     const chkEmail = (str) => {
       var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
       return regExp.test(str) ? true : false;
@@ -39,10 +40,11 @@ class Login extends Component {
     const chkPassword = (str) => {
       return str.length >= 6 ? true : false; 
     };
+
     if (chkEmail(email) === false){
       alert("Error: The Email Address Is Badly Formatted.")
     } else if (chkPassword(password) === false){
-      alert("Error: Minimu Password Length is 6")
+      alert("Error: Minimum Password Length is 6")
     } else {
       if (email !== userInfo.email) {
         alert("Check Email Please")
@@ -57,12 +59,12 @@ class Login extends Component {
 
   render(){
     return (
-      <Fragment>
-        <LoginForm 
+        <FormTemplate 
+          onPage="login"
           onEmailChange={this.handleEmailChange} 
           onPasswordChange={this.handlePasswordChange} 
-          onSubmit={this.handleSubmit}></LoginForm>
-      </Fragment>
+          onSubmit={this.handleSubmit}>
+        </FormTemplate>
     );
   }
 }
