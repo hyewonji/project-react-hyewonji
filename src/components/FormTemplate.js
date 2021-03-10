@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+//import { useMediaQuery } from 'react-responsive';
 
 const InputMain = styled.main`
     display:flex;
-    width: 75vh;
+    width: 70vw;
     height: 80vh;
 `
 
@@ -13,9 +14,13 @@ const InputLeft = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 35vw;
+    width: 40%;
     border-radius: 13px 0 0 13px;
     background-color: #FFFFFF;
+    @media screen and (max-width: 768px) {
+        width:100%;
+        border-radius: 13px;
+    }
 `
 
 const InputTitle = styled.div`
@@ -34,16 +39,13 @@ const InputForm = styled.form`
 ` 
 
 const Input = styled.input`
-    width: 70%;
+    width: 75%;
     height: 60px;
     margin-bottom: 33px;
     padding-left: 25px;
     border-radius: 30px;
     border: none;   
     box-shadow: 0 0 2rem rgba(0,0,255,.3);
-    &:focus{
-        outline:none;
-    }
 `
 
 const SubmitBtn = styled.input`
@@ -61,11 +63,14 @@ const SubmitBtn = styled.input`
 `
 
 const InputImage = styled.div`
-    background: gray;
-    width: 70%;
+    background: #79b8ff;
+    width: 60%;
     display: flex;
     flex-direction: column;
     border-radius: 0 13px 13px 0;
+    @media screen and (max-width: 768px) {
+        display:none;
+    }
 `
 
 const ChangeToSignup = styled.div`
@@ -75,27 +80,48 @@ const ChangeToSignup = styled.div`
     text-decoration:none;
 `
 
+const SLink = styled(Link)`
+    color: #FF3A82;
+`
 
-function SignupForm({onEmailChange, onPasswordChange, onSubmit}){
+function isLogin(onPage){
+    if(onPage === 'login'){
+        return true;
+    } else {
+        return false;
+    }
+}
 
+function FormTemplate({onPage, onEmailChange, onPasswordChange, onSubmit}){
+    const Login = isLogin(onPage)
     return (
         <InputMain>
             <InputLeft>
-                <InputForm>
-                    <InputTitle>Signup</InputTitle>
+                <InputForm onSubmit={onSubmit}>
+                    <InputTitle>
+                        { Login ? "Login" : "Signup" }
+                    </InputTitle>
                     <Input type='email' onChange={onEmailChange}></Input>
                     <Input type='password' onChange={onPasswordChange}></Input>
-                    <SubmitBtn type='button' value='Signup' onClick={onSubmit} >
+                    <SubmitBtn 
+                        type='submit' 
+                        value= { Login ? "Login" : "Signup" } >
                     </SubmitBtn>
                 </InputForm>
                 <ChangeToSignup>
-                    <span>Already Have an account?</span>
-                    <Link to='/login' style={{color:'#FF3A82', textDecoration:'none'}}>Login</Link>
+                    { 
+                    Login 
+                    ? "Don't have an account?" 
+                    : "Already Have an account?" 
+                    }
+                    <SLink to={ Login ? '/signup' : '/'} >
+                        { Login ? "Signup" : "Login"}
+                    </SLink>
                 </ChangeToSignup>
             </InputLeft>
-            <InputImage></InputImage>
+            <InputImage />
         </InputMain>
     )
 }
 
-export default SignupForm;
+export default FormTemplate;

@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
+import HelmetComponent from '../components/HelmetComponent';
 import HomeForm from '../components/HomeForm'
+import NavBar from '../components/NavBar'
 
-function Home(){
+const Home = () => {
+
     return (
-        <HomeForm></HomeForm>
+        <>
+            <HelmetComponent title="Home" />
+            <NavBar></NavBar>
+            <HomeForm></HomeForm>
+        </>
     )
 }
 

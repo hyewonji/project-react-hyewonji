@@ -1,9 +1,13 @@
 import React from 'react';
-import SignupForm from '../components/SignupForm';
+import FormTemplate from '../components/FormTemplate';
+import HelmetComponent from "../components/HelmetComponent";
 
-function Signup () {
+const Signup = () => {
     return(
-    <SignupForm></SignupForm>
+    <>  
+        <HelmetComponent title='Signup'></HelmetComponent> 
+        <FormTemplate></FormTemplate>
+    </>
     )
 };
 
