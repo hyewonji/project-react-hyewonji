@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import weatherApi from '../api';
+import NavBar from '../components/NavBar';
 import AddCurrent from '../components/AddCurrent';
 import WeatherCard from '../weather-card/WeatherCard';
 
@@ -46,8 +47,11 @@ class Add extends Component {
         };
 
         return(
-            <AddCurrent currentWeather = { currentWeather } weatherCard = { WeatherCard }> 
-            </AddCurrent>   
+            <>
+                <NavBar />
+                <AddCurrent currentWeather = { currentWeather } weatherCard = { WeatherCard }> 
+                </AddCurrent>   
+            </>
         )
     }
 };

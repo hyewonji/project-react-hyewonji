@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import HelmetComponent from '../components/HelmetComponent';
 import HomeForm from '../components/HomeForm'
-import MenuBar from '../components/MenuBar'
+import NavBar from '../components/NavBar'
 
-function Home(){
+const Home = () => {
+
     return (
         <>
-            <MenuBar></MenuBar>
+            <HelmetComponent title="Home" />
+            <NavBar></NavBar>
             <HomeForm></HomeForm>
         </>
     )

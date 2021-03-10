@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+//import { useMediaQuery } from 'react-responsive';
 
 const InputMain = styled.main`
     display:flex;
-    width: 75vh;
+    width: 70vw;
     height: 80vh;
 `
 
@@ -13,9 +14,13 @@ const InputLeft = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 35vw;
+    width: 40%;
     border-radius: 13px 0 0 13px;
     background-color: #FFFFFF;
+    @media screen and (max-width: 768px) {
+        width:100%;
+        border-radius: 13px;
+    }
 `
 
 const InputTitle = styled.div`
@@ -34,16 +39,13 @@ const InputForm = styled.form`
 ` 
 
 const Input = styled.input`
-    width: 70%;
+    width: 75%;
     height: 60px;
     margin-bottom: 33px;
     padding-left: 25px;
     border-radius: 30px;
     border: none;   
     box-shadow: 0 0 2rem rgba(0,0,255,.3);
-    &:focus{
-        outline:none;
-    }
 `
 
 const SubmitBtn = styled.input`
@@ -62,10 +64,13 @@ const SubmitBtn = styled.input`
 
 const InputImage = styled.div`
     background: #79b8ff;
-    width: 70%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     border-radius: 0 13px 13px 0;
+    @media screen and (max-width: 768px) {
+        display:none;
+    }
 `
 
 const ChangeToSignup = styled.div`
@@ -114,7 +119,7 @@ function FormTemplate({onPage, onEmailChange, onPasswordChange, onSubmit}){
                     </SLink>
                 </ChangeToSignup>
             </InputLeft>
-            <InputImage></InputImage>
+            <InputImage />
         </InputMain>
     )
 }
