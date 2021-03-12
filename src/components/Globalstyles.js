@@ -1,4 +1,3 @@
-import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
@@ -11,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
     body{
         margin:0;
         width: 100vw;
-        height:100vh;
+        height: 100vh;
         display:flex;
         align-items:center;
         justify-content:center;

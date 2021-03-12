@@ -1,59 +1,84 @@
-import React, {Component} from 'react';
-import weatherApi from '../api';
-import NavBar from '../components/NavBar';
-import AddCurrent from '../components/AddCurrent';
-import WeatherCard from '../weather-card/WeatherCard';
+import React, { useState, useEffect } from "react";
+import weatherApi from "../api";
+import NavBar from "../components/NavBar";
+import AddTemplate from "../components/AddTemplate";
+import WeatherCard from "../components/WeatherCard";
 
-const API_KEY = 'ed3b96c06f6343ed844ef371d65d6a1b'
-const CITY_NAME = 'Masan'
+const Add = () => {
 
-class Add extends Component {
+  const [currentCoords, setCurrentCoords] = useState({
+    lat: null,
+    lon: null,
+  });
+  const [cityWeather, setCityWeather] = useState({
+    city: null,
+    main: null,
+    temp: 0,
+  });
+  const [inputValue,setInputValue] = useState(null);
 
-    state={
-            temperature: 0,
-            tempMin: 0,
-            tempMax: 0,
-            main: '',
-            name : CITY_NAME
-    };
 
-    getMovies = async () => {
-        console.log(weatherApi)
-        const weatherData = await weatherApi;
-        
-        this.setState({
-            temperature: Math.floor(weatherData.data.main.temp - 273.15),
-            tempMin: Math.floor(weatherData.data.main.temp_min - 273.15),
-            tempMax: Math.floor(weatherData.data.main.temp_max - 273.15),
-            main : weatherData.data.weather[0].main
+  const getWeather = async () => {
+    if(currentCoords.lat !== null && currentCoords.lon !== null){
+      console.log('how')
+      const weatherData = await weatherApi('coords',currentCoords);
+      console.log(weatherData);
+      
+      const { data : { name }} = weatherData;
+      const { data : { weather }} = weatherData;
+      const { data : { 
+                main : { 
+                  temp 
+      }}} = weatherData;
+      const main = weather[0].main
+      setCityWeather({
+        ...cityWeather,
+        city : name,
+        main,
+        temp
+      })
+    }
+  };
+  
+  const geoLocation = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      
+      if(lat !== currentCoords.lat && lon !== currentCoords.lon){
+        setCurrentCoords({
+          lat,
+          lon
         })
-    }
+      }
+    })
+  }
 
-    componentDidMount(){
-        this.getMovies();
-    }
+  useEffect(() => {
+    geoLocation();
+    getWeather();
+  },[currentCoords])
 
-    handleSubmit = (e) => {
-        console.log(e.value)
-    }
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+    console.log(inputValue);
+  };
 
-    render(){
-        const currentWeather = {
-            temperature : this.state.temperature,
-            tempMin : this.state.tempMin,
-            tempMax : this.state.tempMax,
-            main : this.state.main,
-            name : this.state.name
-        };
-
-        return(
-            <>
-                <NavBar />
-                <AddCurrent currentWeather = { currentWeather } weatherCard = { WeatherCard }> 
-                </AddCurrent>   
-            </>
-        )
-    }
+  const handleSubmit = () => {
+    console.log(inputValue);
+  }
+  
+  return (
+    <>
+      <NavBar />
+      <AddTemplate
+        cityWeather={cityWeather}
+        weatherCard={WeatherCard(cityWeather.main)}
+        onSubmit={handleSubmit}
+        onChange={handleChange}
+      ></AddTemplate>
+    </>
+  );
 };
 
-export default Add; 
+export default Add;

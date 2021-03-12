@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react';
+import React,{ useState } from 'react';
 import styled from 'styled-components';
 import { Link , withRouter} from 'react-router-dom';
 import { IoReorderThreeOutline } from 'react-icons/io5';
@@ -116,8 +116,6 @@ const NavBar = withRouter(({ location: { pathname }}) => {
     const onClick = () => {
         setOpenNav(!openNav);
     };
-
-    console.log(pathname);
 
     return (
         <>
