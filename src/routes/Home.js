@@ -1,14 +1,16 @@
-import React from 'react'
-import HomeForm from '../components/HomeForm'
-import MenuBar from '../components/MenuBar'
+import React from "react";
+import HelmetComponent from "../components/HelmetComponent";
+import HomeTemaplate from "../components/HomeTemplate";
+import NavBar from "../components/NavBar";
 
-function Home(){
-    return (
-        <>
-            <MenuBar></MenuBar>
-            <HomeForm></HomeForm>
-        </>
-    )
-}
+const Home = () => {
+  return (
+    <>
+      <HelmetComponent title="Home" />
+      <NavBar></NavBar>
+      <HomeTemaplate></HomeTemaplate>
+    </>
+  );
+};
 
-export default Home
+export default Home;

@@ -1,4 +1,3 @@
-import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
@@ -10,8 +9,8 @@ const GlobalStyles = createGlobalStyle`
     html,
     body{
         margin:0;
-        width: 100%;
-        height:100vh;
+        width: 100vw;
+        height: 100vh;
         display:flex;
         align-items:center;
         justify-content:center;
@@ -24,6 +23,13 @@ const GlobalStyles = createGlobalStyle`
     a{
         text-decoration: none;
     }
+
+    input{
+        &:focus{
+            outline:none;
+        }
+    }
+
 `
 
 export default GlobalStyles;
