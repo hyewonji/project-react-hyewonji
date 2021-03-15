@@ -61,18 +61,14 @@ const Login = () => {
       alert("Error: Minimum Password Length is 6");
     } else {
       const userIdCheck = userLists.filter((user) => {
-        if (user.email === email) {
-          return user;
-        }
+        return user.email === email;
       });
 
       if (userIdCheck.length === 0) {
         alert("회원정보가 존재하지 않습니다.");
       } else {
         const userPassword = userIdCheck.filter((user) => {
-          if (user.password === password) {
-            return user;
-          }
+          return user.password === password;
         });
 
         if (userPassword.length === 0) {
@@ -93,6 +89,7 @@ const Login = () => {
         onEmailChange={handleEmailChange}
         onPasswordChange={handlePasswordChange}
         onSubmit={handleSubmit}
+        isLogin={isLogin}
       ></FormTemplate>
     </>
   );

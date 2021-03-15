@@ -116,7 +116,6 @@ const NavBar = withRouter(({ location: { pathname }}) => {
     const onClick = () => {
         setOpenNav(!openNav);
     };
-
     return (
         <>
             <UpperNav>
@@ -135,13 +134,13 @@ const NavBar = withRouter(({ location: { pathname }}) => {
                         <FreePlan >Free Plan</FreePlan>
                     </UserProfile>
                     <List>
-                        <Item current={pathname ==='/home'}>
+                        <Item current={pathname === '/home'}>
                             <Link to="/home" >Home</Link>
                         </Item>
-                        <Item current={pathname ==='/add'}>
+                        <Item current={pathname === '/add'}>
                             <Link to="/add" >Add City</Link>
                         </Item>
-                        <Item current={pathname ==='/login'}>
+                        <Item current={pathname === '/'}>
                             <Link to="/login" >Logout</Link>
                         </Item>
                     </List>

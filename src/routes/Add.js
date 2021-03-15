@@ -1,81 +1,98 @@
 import React, { useState, useEffect } from "react";
-import weatherApi from "../api";
+import { CallApi } from "../api";
+import { CountryApi } from "../api";
 import NavBar from "../components/NavBar";
 import AddTemplate from "../components/AddTemplate";
 import WeatherCard from "../components/WeatherCard";
 
 const Add = () => {
-
-  const [currentCoords, setCurrentCoords] = useState({
-    lat: null,
-    lon: null,
+  const [coords, setCoords] = useState({
+    latitude: null,
+    longitude: null,
   });
   const [cityWeather, setCityWeather] = useState({
     city: null,
-    main: null,
+    weather: null,
     temp: 0,
   });
   const [inputValue,setInputValue] = useState(null);
-
-
-  const getWeather = async () => {
-    if(currentCoords.lat !== null && currentCoords.lon !== null){
-      console.log('how')
-      const weatherData = await weatherApi('coords',currentCoords);
-      console.log(weatherData);
-      
-      const { data : { name }} = weatherData;
-      const { data : { weather }} = weatherData;
-      const { data : { 
-                main : { 
-                  temp 
-      }}} = weatherData;
-      const main = weather[0].main
-      setCityWeather({
-        ...cityWeather,
-        city : name,
-        main,
-        temp
-      })
-    }
-  };
+  const [cityList,setCityList] = useState([]);
+  const COORDS = 'coords';
+  const CITY = 'city';
   
-  const geoLocation = () => {
-    navigator.geolocation.getCurrentPosition(position => {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-      
-      if(lat !== currentCoords.lat && lon !== currentCoords.lon){
-        setCurrentCoords({
-          lat,
-          lon
+  const getWeather = async (request) => {
+    if(request === COORDS){
+      if(coords.latitude !== null && coords.longitude !== null){
+        const weatherDataByCoords = await CallApi(COORDS,coords);
+        const { data : { 
+          weather, 
+          name : city,
+          main : {
+            temp} 
+          }} = weatherDataByCoords;
+        
+        setCityWeather({
+          ...cityWeather,
+          city,
+          weather: weather[0].main,
+          temp
         })
       }
-    })
+    } else if(request === CITY){
+      console.log(CITY)
+    }
+    
+  };
+  
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    getWeather(CITY);
+  };
+
+  const handleClick = (e) => {
+    console.log(e);
   }
 
   useEffect(() => {
-    geoLocation();
-    getWeather();
-  },[currentCoords])
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      setCoords({
+        ...coords,
+        latitude,
+        longitude
+      })
+    });
+  }, []);
 
-  const handleChange = (e) => {
-    setInputValue(e.target.value);
-    console.log(inputValue);
-  };
+  useEffect(() => {
+    getWeather(COORDS);
+  },[COORDS,coords]);
 
-  const handleSubmit = () => {
-    console.log(inputValue);
-  }
+  useEffect(()=> {
+    const data = CountryApi('get');
+    data.then(res => {
+      const { data } = res
+      data.forEach(country => {
+        if(country.capital.length){
+          cityList.push(country.capital)
+        }
+      });
+      cityList.sort();
+    })
+  },[]);
   
   return (
     <>
       <NavBar />
       <AddTemplate
-        cityWeather={cityWeather}
-        weatherCard={WeatherCard(cityWeather.main)}
         onSubmit={handleSubmit}
         onChange={handleChange}
+        cityWeather={cityWeather}
+        onClick={handleClick}
       ></AddTemplate>
     </>
   );
