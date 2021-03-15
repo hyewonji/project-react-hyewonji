@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { AiOutlineSearch } from "react-icons/ai";
+import WeatherCard from './WeatherCard';
 
 const Main = styled.div`
   margin-top: 70px;
@@ -12,13 +13,14 @@ const Main = styled.div`
   }
 `;
 
-const CitySearchWrapper = styled.form`
+const CitySearchWrapper = styled.div`
   width: 50%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 70px;
   border-radius: 20px 0 0 20px;
   background: white;
   @media screen and (max-width: 768px) {
@@ -27,10 +29,18 @@ const CitySearchWrapper = styled.form`
   }
 `;
 
-const SearchCityForm = styled.div`
+const SearchTitle = styled.div`
+  font-size: 30px;
+  font-weight: 600px;
+  margin-bottom: 40px;
+  color: #005659;
+`
+
+const SearchCityForm = styled.form`
   position: relative;
   width: 80%;
   box-sizing: border-box;
+  margin-bottom: 150px;
 `;
 
 const Input = styled.input`
@@ -71,10 +81,11 @@ const CurrentWeatherWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: 70px;
   border-radius: 0 20px 20px 0;
   color: white;
-  background: gray;
+  background: #9591A6;
   @media screen and (max-width: 768px) {
     width: 100%;
     border-radius: 0 0 20px 20px;
@@ -84,43 +95,63 @@ const CurrentWeatherWrapper = styled.div`
 const Title = styled.div`
   font-size: 28px;
   font-weight: 600;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: solid 1px white;
 `;
 
 const Date = styled.div`
-  font-size: 20px;
+  font-size: 15px;
+  margin-bottom: 20px;
 `;
 
-const WeatherCard = styled.div`
+const WeatherImage = styled.div`
   width: 100px;
   height: 100px;
+  padding: 10px;
+  margin: 60px;
   background-size: contain;
+  @media screen and (max-width: 768px) {
+    margin: 30px;
+  }
 `;
 
 const Temperature = styled.div`
   font-size: 70px;
+  margin-bottom: 20px;
 `;
 
 const City = styled.div`
   font-size: 28px;
+  margin-bottom: 20px;
 `;
 
 const Description = styled.div`
-  font-size: 15px;
+  font-size: 20px;
+  margin-bottom: 20px;
 `;
 
-function AddCurrent({ onSubmit, onChange, cityWeather, weatherCard }) {
+function AddCurrent({ onClick, onSubmit, onChange, cityWeather }) {
   const today = new window.Date();
   const dateString = today.toLocaleDateString("en-US", {
     weekday: "long",
     day: "numeric",
-    month: "short",
+    month: "short"
   });
-
+  const dayforamt = dateString.day%10;
+  const { city, weather, temp } = cityWeather;
   return (
     <Main>
       <CitySearchWrapper>
+        <SearchTitle>
+          SEARCH CITIES
+        </SearchTitle>
         <SearchCityForm onSubmit={onSubmit}>
-          <Input placeholder="SEARCH CITY" onChange={onChange}></Input>
+          <Input 
+            placeholder="SEARCH CITY" 
+            onClick={onClick}
+            onChange={onChange}
+          ></Input>
           <SubmitBtn onClick={onSubmit}>
             <AiOutlineSearch ></AiOutlineSearch>
           </SubmitBtn>
@@ -128,13 +159,19 @@ function AddCurrent({ onSubmit, onChange, cityWeather, weatherCard }) {
       </CitySearchWrapper>
 
       <CurrentWeatherWrapper >
-        <Title>Here We Are!</Title>
-        <Date>{dateString}</Date>
-        <WeatherCard>{weatherCard}</WeatherCard>
-        <Temperature>{cityWeather.temp}°</Temperature>
-        <City>{cityWeather.city}</City>
-        {cityWeather.main}
-        <Description></Description>
+        <Title>CITY OF THE MONTH</Title>
+        <Date>{dateString}
+          {dayforamt === 1 
+            ? 'st' 
+            : (dayforamt === 2 
+                ? 'nd' 
+                : (dayforamt === 3 
+                    ? 'rd' 
+                    : 'th'))}</Date>
+        <WeatherImage>{WeatherCard(weather)}</WeatherImage>
+        <Temperature>{temp}°</Temperature>
+        <City>{city}</City>
+        <Description>{weather}</Description>
       </CurrentWeatherWrapper>
     </Main>
   );
