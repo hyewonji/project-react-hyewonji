@@ -17,7 +17,7 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
         background: -webkit-linear-gradient(-1deg, rgb(255, 248, 129), rgb(109, 237, 255));
         background: linear-gradient(-1deg, rgb(255, 248, 129), rgb(109, 237, 255));
-        
+        overflow: scroll;
     }
 
     a{
