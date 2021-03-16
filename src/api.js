@@ -11,7 +11,7 @@ export const CallApi = (request,params) => {
         lon: params.longitude,
         appid: API_KEY,
       } : {
-        q: params.city,
+        q: params,
         appid: API_KEY
       })
   });

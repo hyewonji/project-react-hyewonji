@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { AiOutlineSearch } from "react-icons/ai";
 import WeatherCard from './WeatherCard';
+import MainWeather from './MainWeather';
+
 
 const Main = styled.div`
   margin-top: 70px;
@@ -25,6 +27,7 @@ const CitySearchWrapper = styled.div`
   background: white;
   @media screen and (max-width: 768px) {
     width: 100%;
+    height: 100%;
     border-radius: 20px 20px 0 0;
   }
 `;
@@ -40,17 +43,16 @@ const SearchCityForm = styled.form`
   position: relative;
   width: 80%;
   box-sizing: border-box;
-  margin-bottom: 150px;
 `;
 
 const Input = styled.input`
-  width: 80%;
-  padding: 1.5rem;
-  border-radius: 3rem;
+  width: 83%;
+  padding: 23px;
+  border-radius: 50px;
   outline: none;
   border: none;
   box-shadow: 0 0 2rem 0.15rem rgba(0, 0, 255, 0.1);
-  font-size: 1rem;
+  font-size: 15px;
   color: #131f69;
   text-transform: uppercase;
 `;
@@ -60,8 +62,8 @@ const SubmitBtn = styled.div`
   position: absolute;
   right: 0;
   top: -0.35rem;
-  height: 80px;
-  width: 80px;
+  height: 75px;
+  width: 75px;
   border-radius: 50%;
   outline: none;
   border: none;
@@ -74,6 +76,21 @@ const SubmitBtn = styled.div`
   background-color: #31feae;
   font-size: 50px;
 `;
+
+const InputCity = styled.div`
+  width:80%;
+  height:100px;
+  border-radius: 15px;
+  background: red;
+  margin-bottom: 50px; 
+  display: ${props => props.inputValue ? 'block' : 'none'};
+`
+
+const InputCityItem = styled.div`
+  width: 100%;
+  height: 50px;
+  background: blue;
+`
 
 const CurrentWeatherWrapper = styled.div`
   width: 50%;
@@ -88,6 +105,7 @@ const CurrentWeatherWrapper = styled.div`
   background: #9591A6;
   @media screen and (max-width: 768px) {
     width: 100%;
+    height: 100vh;
     border-radius: 0 0 20px 20px;
   }
 `;
@@ -105,7 +123,7 @@ const Date = styled.div`
   margin-bottom: 20px;
 `;
 
-const WeatherImage = styled.div`
+const Image = styled.div`
   width: 100px;
   height: 100px;
   padding: 10px;
@@ -131,7 +149,7 @@ const Description = styled.div`
   margin-bottom: 20px;
 `;
 
-function AddCurrent({ onClick, onSubmit, onChange, cityWeather }) {
+function AddCurrent({ onSubmit, onChange, inputList, nowCity, searchCity, inputValue }) {
   const today = new window.Date();
   const dateString = today.toLocaleDateString("en-US", {
     weekday: "long",
@@ -139,7 +157,8 @@ function AddCurrent({ onClick, onSubmit, onChange, cityWeather }) {
     month: "short"
   });
   const dayforamt = dateString.day%10;
-  const { city, weather, temp } = cityWeather;
+  const { city, weather, temp : temp } = nowCity;
+  console.log(inputList)
   return (
     <Main>
       <CitySearchWrapper>
@@ -148,14 +167,15 @@ function AddCurrent({ onClick, onSubmit, onChange, cityWeather }) {
         </SearchTitle>
         <SearchCityForm onSubmit={onSubmit}>
           <Input 
-            placeholder="SEARCH CITY" 
-            onClick={onClick}
+            placeholder="SEARCH CITY"
             onChange={onChange}
           ></Input>
           <SubmitBtn onClick={onSubmit}>
             <AiOutlineSearch ></AiOutlineSearch>
           </SubmitBtn>
         </SearchCityForm>
+        <InputCity inputValue={inputValue}></InputCity>
+        <WeatherCard searchCity={searchCity}/>
       </CitySearchWrapper>
 
       <CurrentWeatherWrapper >
@@ -168,7 +188,7 @@ function AddCurrent({ onClick, onSubmit, onChange, cityWeather }) {
                 : (dayforamt === 3 
                     ? 'rd' 
                     : 'th'))}</Date>
-        <WeatherImage>{WeatherCard(weather)}</WeatherImage>
+        <Image>{MainWeather(weather)}</Image>
         <Temperature>{temp}°</Temperature>
         <City>{city}</City>
         <Description>{weather}</Description>
