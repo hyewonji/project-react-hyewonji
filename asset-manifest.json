@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/project-react-hyewonji/static/js/main.cbd928c8.chunk.js",
-    "main.js.map": "/project-react-hyewonji/static/js/main.cbd928c8.chunk.js.map",
+    "main.js": "/project-react-hyewonji/static/js/main.bd2c68f2.chunk.js",
+    "main.js.map": "/project-react-hyewonji/static/js/main.bd2c68f2.chunk.js.map",
     "runtime-main.js": "/project-react-hyewonji/static/js/runtime-main.470bee7b.js",
     "runtime-main.js.map": "/project-react-hyewonji/static/js/runtime-main.470bee7b.js.map",
     "static/js/2.aebbb011.chunk.js": "/project-react-hyewonji/static/js/2.aebbb011.chunk.js",
@@ -12,6 +12,6 @@
   "entrypoints": [
     "static/js/runtime-main.470bee7b.js",
     "static/js/2.aebbb011.chunk.js",
-    "static/js/main.cbd928c8.chunk.js"
+    "static/js/main.bd2c68f2.chunk.js"
   ]
 }
