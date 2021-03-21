@@ -77,19 +77,16 @@ const SubmitBtn = styled.div`
   font-size: 50px;
 `;
 
-const InputCity = styled.div`
-  width:80%;
-  height:100px;
-  border-radius: 15px;
-  background: red;
-  margin-bottom: 50px; 
-  display: ${props => props.inputValue ? 'block' : 'none'};
+const WeatherCardContainer = styled.div`
+  display: ${props => props.showWeatherCard ? 'block' : 'none'};
 `
 
-const InputCityItem = styled.div`
-  width: 100%;
-  height: 50px;
-  background: blue;
+const FollowBtn = styled.div`
+    padding: 15px 20px;
+    border-radius: 30px;
+    background: #2B244D;
+    color: white;
+    
 `
 
 const CurrentWeatherWrapper = styled.div`
@@ -149,7 +146,7 @@ const Description = styled.div`
   margin-bottom: 20px;
 `;
 
-function AddCurrent({ onSubmit, onChange, inputList, nowCity, searchCity, inputValue }) {
+function AddCurrent({ onSubmit, onChange, inputList, nowCity, searchCity, inputValue, showWeatherCard }) {
   const today = new window.Date();
   const dateString = today.toLocaleDateString("en-US", {
     weekday: "long",
@@ -158,7 +155,6 @@ function AddCurrent({ onSubmit, onChange, inputList, nowCity, searchCity, inputV
   });
   const dayforamt = dateString.day%10;
   const { city, weather, temp : temp } = nowCity;
-  console.log(inputList)
   return (
     <Main>
       <CitySearchWrapper>
@@ -167,6 +163,7 @@ function AddCurrent({ onSubmit, onChange, inputList, nowCity, searchCity, inputV
         </SearchTitle>
         <SearchCityForm onSubmit={onSubmit}>
           <Input 
+            name='keyword'
             placeholder="SEARCH CITY"
             onChange={onChange}
           ></Input>
@@ -174,8 +171,10 @@ function AddCurrent({ onSubmit, onChange, inputList, nowCity, searchCity, inputV
             <AiOutlineSearch ></AiOutlineSearch>
           </SubmitBtn>
         </SearchCityForm>
-        <InputCity inputValue={inputValue}></InputCity>
-        <WeatherCard searchCity={searchCity}/>
+        <WeatherCardContainer showWeatherCard={showWeatherCard}>
+          <WeatherCard searchCity={searchCity}/>
+          <FollowBtn>ADD CITY +</FollowBtn>
+        </WeatherCardContainer>
       </CitySearchWrapper>
 
       <CurrentWeatherWrapper >
@@ -197,4 +196,4 @@ function AddCurrent({ onSubmit, onChange, inputList, nowCity, searchCity, inputV
   );
 }
 
-export default AddCurrent;
+export default React.memo(AddCurrent);

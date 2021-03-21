@@ -23,7 +23,8 @@ const Add = () => {
   })
   const [cityList,setCityList] = useState([]);
   const [inputValue,setInputValue] = useState(null);
-  const [inputList,setinputList] = useState([]);
+  const [inputList,setInputList] = useState([]);
+  const [showWeatherCard, setShowWeatherCard] = useState(false);
   const COORDS = 'coords';
   const CITY = 'city';
   
@@ -72,16 +73,16 @@ const Add = () => {
       const { data } = res
       data.forEach(country => {
         if(country.capital.length){
-          cityList.push(country.capital)
+          cityList.push(country.capital);
         }
       });
-      cityList.sort();
     })
+    cityList.sort();
   } 
   
   const getInputList = () => {
-    setinputList([]);
     if(inputValue){
+      setInputList([]);
       cityList.forEach(city => {
         const cityS = city.replace(" ","").toLowerCase();
         if(cityS.includes(inputValue) && inputList.length < 5){
@@ -101,6 +102,8 @@ const Add = () => {
     const capitalize = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
     if(cityList.indexOf(capitalize) >= 0){
       getWeather(CITY);
+    } else {
+      setShowWeatherCard(false);
     }
   };
 
@@ -128,6 +131,17 @@ const Add = () => {
     getInputList();
   },[inputValue]);
   
+  useEffect(()=>{
+    console.log(inputList);
+  },[inputList])
+
+  useEffect(()=>{
+    if(searchCity.city !== null){
+      setShowWeatherCard(true);
+    } else {
+      setShowWeatherCard(false);
+    }
+  },[searchCity]);
 
   return (
     <>
@@ -140,9 +154,10 @@ const Add = () => {
         nowCity={nowCity}
         searchCity={searchCity}
         inputValue={inputValue}
+        showWeatherCard={showWeatherCard}
       ></AddTemplate>
     </>
   );
 };
 
-export default Add;
+export default React.memo(Add);
