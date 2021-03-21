@@ -3,6 +3,7 @@ import { CallApi } from "../api";
 import { CountryApi } from "../api";
 import NavBar from "../components/NavBar";
 import AddTemplate from "../components/AddTemplate";
+import { useWeatherDispatch, useWeatherNextId } from '../WeatherContext';
 
 const Add = () => {
   const [coords, setCoords] = useState({
@@ -23,9 +24,14 @@ const Add = () => {
   })
   const [cityList,setCityList] = useState([]);
   const [inputValue,setInputValue] = useState(null);
-  const [inputList,setinputList] = useState([]);
+  //const [inputList,setInputList] = useState([]);
+  const [showWeatherCard, setShowWeatherCard] = useState(false);
+  const [addMode, setAddMode] = useState(false);
   const COORDS = 'coords';
   const CITY = 'city';
+  
+  const dispatch = useWeatherDispatch();
+  const nextId = useWeatherNextId();
   
   const getWeather = async (request) => {
     if(request === COORDS){
@@ -65,23 +71,24 @@ const Add = () => {
       })
     } 
   };
-
+  
   const getCityList = () => {
     const data = CountryApi();
     data.then(res => {
       const { data } = res
       data.forEach(country => {
         if(country.capital.length){
-          cityList.push(country.capital)
+          cityList.push(country.capital);
         }
       });
-      cityList.sort();
     })
+    cityList.sort();
   } 
   
+  /*
   const getInputList = () => {
-    setinputList([]);
     if(inputValue){
+      setInputList([]);
       cityList.forEach(city => {
         const cityS = city.replace(" ","").toLowerCase();
         if(cityS.includes(inputValue) && inputList.length < 5){
@@ -91,6 +98,7 @@ const Add = () => {
     }
     console.log(inputList);
   }
+  */
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
@@ -101,11 +109,27 @@ const Add = () => {
     const capitalize = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
     if(cityList.indexOf(capitalize) >= 0){
       getWeather(CITY);
+    } else {
+      setShowWeatherCard(false);
     }
   };
 
-  const handleClick = (e) => {
-    console.log(e);
+  const handleClick = () => {
+    dispatch({
+      type: 'CREATE',
+      weather: {
+        id: nextId.current,
+        city: searchCity.city, 
+        weather: searchCity.weather, 
+        temp: searchCity.temp, 
+        temp_min: searchCity.temp_min, 
+        temp_max: searchCity.temp_max
+      }
+    })
+    setShowWeatherCard(false);
+    setAddMode(true);
+    setTimeout(() => setAddMode(false),2000);
+    nextId.current += 1;
   }
 
   useEffect(() => {
@@ -124,25 +148,34 @@ const Add = () => {
     getWeather(COORDS);
   },[COORDS,coords]);
 
+  /*  
   useEffect(()=> {
     getInputList();
-  },[inputValue]);
-  
+  },[inputValue, inputList]);
+  */
+
+  useEffect(()=>{
+    if(searchCity.city !== null){
+      setShowWeatherCard(true);
+    } else {
+      setShowWeatherCard(false);
+    }
+  },[searchCity]);
 
   return (
     <>
       <NavBar />
       <AddTemplate
-        onClick={handleClick}
         onChange={handleChange}
         onSubmit={handleSubmit}
-        inputList={inputList}
+        onClick={handleClick}
         nowCity={nowCity}
         searchCity={searchCity}
-        inputValue={inputValue}
+        showWeatherCard={showWeatherCard}
+        addMode={addMode}
       ></AddTemplate>
     </>
   );
 };
 
-export default Add;
+export default React.memo(Add);

@@ -7,30 +7,41 @@ const CardWrapper = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items:center;
-    width: 80%;
+    width: 370px;
     height: 550px;
     padding: 40px;
     border-radius:30px;
     background: white;
     text-decoration:none;
     box-shadow: 0 0 2rem 0.15rem rgba(0, 0, 255, 0.1);
+    position: relative;
+    margin: 50px 0 ;
 `
 
 const City = styled.div`
     font-size: 23px;
 `
 const Image = styled.div`
-    width: 70px;
-    height: 70px;
-    padding: 10px;
-    margin: 20px;
+    width: 90px;
+    height: 80px;
+    margin-top: 40px;
+    margin-bottom: 130px;
 `
 
 const CurrentWeather = styled.div`
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 `
 
-const Temp = styled.div``
-const Main = styled.div``
+const Temp = styled.div`
+    font-size: 50px;
+    margin-bottom: 10px;
+`
+const Main = styled.div`
+    font-size: 15px;
+`
 const Temperature = styled.div`
     display: flex;
 `
@@ -47,7 +58,10 @@ const TempMin = styled.div`
 const TempMax = styled.div`
     color: #FF0000;
 `
-const TempM = styled.div``
+const TempM = styled.div`
+    font-size: 25px;
+    margin: 10px 0;
+`
 
 const WeatherCard = ({searchCity}) => {
     const { city, weather, temp, temp_min, temp_max } = searchCity;
@@ -56,7 +70,7 @@ const WeatherCard = ({searchCity}) => {
             <City>{city}</City>
             <Image>{MainWeather(weather)}</Image>
             <CurrentWeather>
-                <Temp>{temp}</Temp>
+                <Temp>{temp}°</Temp>
                 <Main>{weather}</Main>
             </CurrentWeather>
             <Temperature>
@@ -68,7 +82,7 @@ const WeatherCard = ({searchCity}) => {
                 <TempDetail>
                     <TempMax>▼</TempMax>
                     <TempM>{temp_max}</TempM>
-                    <TempMax>Min</TempMax>
+                    <TempMax>Max</TempMax>
                 </TempDetail>
             </Temperature>
         </CardWrapper>

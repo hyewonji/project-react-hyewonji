@@ -4,13 +4,14 @@ import { AiOutlineSearch } from "react-icons/ai";
 import WeatherCard from './WeatherCard';
 import MainWeather from './MainWeather';
 
-
 const Main = styled.div`
-  margin-top: 70px;
+  margin-top: 100px;
+  margin-bottom: 50px;
   width: 90vw;
-  height: 85vh;
+  height: 82vh;
   display: flex;
   @media screen and (max-width: 768px) {
+    height: auto;
     flex-direction: column;
   }
 `;
@@ -25,6 +26,7 @@ const CitySearchWrapper = styled.div`
   padding-top: 70px;
   border-radius: 20px 0 0 20px;
   background: white;
+  overflow: scroll;
   @media screen and (max-width: 768px) {
     width: 100%;
     height: 100%;
@@ -43,6 +45,7 @@ const SearchCityForm = styled.form`
   position: relative;
   width: 80%;
   box-sizing: border-box;
+  margin-bottom: 20px;
 `;
 
 const Input = styled.input`
@@ -77,20 +80,30 @@ const SubmitBtn = styled.div`
   font-size: 50px;
 `;
 
-const InputCity = styled.div`
-  width:80%;
-  height:100px;
-  border-radius: 15px;
-  background: red;
-  margin-bottom: 50px; 
-  display: ${props => props.inputValue ? 'block' : 'none'};
+const WeatherCardContainer = styled.div`
+  display: flex;
+  align-items: center;
+  display: ${props => props.showWeatherCard ? 'block' : 'none'};
 `
 
-const InputCityItem = styled.div`
-  width: 100%;
-  height: 50px;
-  background: blue;
+const FollowBtn = styled.div`
+    padding: 17px 20px;
+    margin: 0;
+    border-radius: 30px;
+    background: #2B244D;
+    color: white;
+    position: relative;
+    bottom: 70px;
+    display: ${props => props.showWeatherCard ? 'block' : 'none'};
+    &:hover{
+      background: #32FEAE;
+    }
 `
+
+const AddedCard = styled.div`
+  display: ${props => props.addMode ? 'display': 'none'};
+`
+
 
 const CurrentWeatherWrapper = styled.div`
   width: 50%;
@@ -149,7 +162,7 @@ const Description = styled.div`
   margin-bottom: 20px;
 `;
 
-function AddCurrent({ onSubmit, onChange, inputList, nowCity, searchCity, inputValue }) {
+function AddCurrent({ onSubmit, onChange, onClick, nowCity, searchCity, showWeatherCard, addMode }) {
   const today = new window.Date();
   const dateString = today.toLocaleDateString("en-US", {
     weekday: "long",
@@ -158,7 +171,6 @@ function AddCurrent({ onSubmit, onChange, inputList, nowCity, searchCity, inputV
   });
   const dayforamt = dateString.day%10;
   const { city, weather, temp : temp } = nowCity;
-  console.log(inputList)
   return (
     <Main>
       <CitySearchWrapper>
@@ -167,6 +179,7 @@ function AddCurrent({ onSubmit, onChange, inputList, nowCity, searchCity, inputV
         </SearchTitle>
         <SearchCityForm onSubmit={onSubmit}>
           <Input 
+            name='keyword'
             placeholder="SEARCH CITY"
             onChange={onChange}
           ></Input>
@@ -174,8 +187,11 @@ function AddCurrent({ onSubmit, onChange, inputList, nowCity, searchCity, inputV
             <AiOutlineSearch ></AiOutlineSearch>
           </SubmitBtn>
         </SearchCityForm>
-        <InputCity inputValue={inputValue}></InputCity>
-        <WeatherCard searchCity={searchCity}/>
+        <WeatherCardContainer showWeatherCard={showWeatherCard}>
+          <WeatherCard searchCity={searchCity}/>
+        </WeatherCardContainer>
+        <FollowBtn showWeatherCard={showWeatherCard} onClick={onClick}>ADD CITY +</FollowBtn>
+        <AddedCard addMode={addMode}>City has been successfully added!</AddedCard> 
       </CitySearchWrapper>
 
       <CurrentWeatherWrapper >
@@ -197,4 +213,4 @@ function AddCurrent({ onSubmit, onChange, inputList, nowCity, searchCity, inputV
   );
 }
 
-export default AddCurrent;
+export default React.memo(AddCurrent);
