@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 //import { useMediaQuery } from 'react-responsive';
 
 const InputMain = styled.main`
-    margin-top: 70px;
+    margin-top: 100px;
+    margin-bottom: 50px;
     display:flex;
     width: 70vw;
-    height: 80vh;
+    height: 83vh;
 `
 
 const InputLeft = styled.div`
@@ -106,7 +107,9 @@ function FormTemplate({onPage, onEmailChange, onPasswordChange, onSubmit}){
                     <Input type='password' onChange={onPasswordChange}></Input>
                     <SubmitBtn 
                         type='submit' 
-                        value= { Login ? "Login" : "Signup" } >
+                        value= { Login ? "Login" : "Signup" } 
+                        onClick={onSubmit}
+                        >
                     </SubmitBtn>
                 </InputForm>
                 <ChangeToSignup>

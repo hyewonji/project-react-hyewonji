@@ -26,6 +26,7 @@ const Image = styled.div`
     height: 80px;
     margin-top: 40px;
     margin-bottom: 130px;
+    margin-right:60px;
 `
 
 const CurrentWeather = styled.div`
@@ -64,6 +65,7 @@ const TempM = styled.div`
 `
 
 const WeatherCard = ({searchCity}) => {
+    console.log(searchCity);
     const { city, weather, temp, temp_min, temp_max } = searchCity;
     return (
         <CardWrapper>

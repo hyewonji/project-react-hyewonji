@@ -25,6 +25,9 @@ const NavIconContainer = styled.div`
     left: 0;
     padding: 10px 20px;
     z-index: 10;
+    &:hover{
+        cursor: pointer;
+    }
 `
 
 const HompageTitle = styled.div`
@@ -46,7 +49,7 @@ const NavBG = styled.div`
     top: 0;
     left: 0;
     height: 100vh;
-    width: 100vw;;
+    width: 100vw;
 `
 
 const NavSideMenu = styled.div`
@@ -107,7 +110,6 @@ const Item = styled.li`
     padding: 20px 0;
     margin-left: 40px;
     margin-bottom: 10px;
-    color: #0f0f0f;
     border-bottom: ${props => props.current ? 'solid 1.5px #5697ff' : 'transparent'};
 `
 
@@ -122,7 +124,9 @@ const NavBar = withRouter(({ location: { pathname }}) => {
                 <NavIconContainer onClick={onClick}>
                     <IoReorderThreeOutline />
                 </NavIconContainer>
-                <HompageTitle>TODAY</HompageTitle>
+                <Link to="/home">
+                    <HompageTitle>TODAY</HompageTitle>
+                </Link>
             </UpperNav> 
             <SpreadNav openNav={openNav}>
                 <NavBG onClick={onClick}></NavBG> 
