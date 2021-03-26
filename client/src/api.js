@@ -4,7 +4,7 @@ const API_KEY = "ed3b96c06f6343ed844ef371d65d6a1b";
 
 export const CallApi = (request,params) => {
   const api = axios.create({
-    baseURL: "http://api.openweathermap.org/data/2.5/",
+    baseURL: "https://api.openweathermap.org/data/2.5/",
     params: (request === 'coords' 
       ? {
         lat: params.latitude,

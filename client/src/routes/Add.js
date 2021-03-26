@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CallApi } from "../api";
 import { CountryApi } from "../api";
+import weatherApi from '../components/WeatherApi';
 import NavBar from "../components/NavBar";
 import AddTemplate from "../components/AddTemplate";
 import { useWeatherDispatch, useWeatherNextId } from '../WeatherContext';
@@ -20,7 +21,7 @@ const Add = () => {
     weather: null,
     temp: 0,
     temp_min: 0,
-    temp_max:0
+    temp_max: 0
   })
   const [cityList,setCityList] = useState([]);
   const [inputValue,setInputValue] = useState(null);
@@ -52,23 +53,8 @@ const Add = () => {
         })
       }
     } else if (request === CITY){
-      const cityName = inputValue;
-      const weatherDataByCity = await CallApi(CITY,cityName);
-      const { data : {
-        weather, 
-        main : { 
-          temp, 
-          temp_min, 
-          temp_max }}
-      } = weatherDataByCity;
-      setSearchCity({
-        ...searchCity,
-        city: cityName.toUpperCase(),
-        weather: weather[0].main,
-        temp : Math.round(temp-273),
-        temp_min : Math.round(temp_min-273),
-        temp_max : Math.round(temp_max-273)
-      })
+      weatherApi(inputValue)
+      .then(weatherInfo=> setSearchCity(weatherInfo))
     } 
   };
   
@@ -83,6 +69,7 @@ const Add = () => {
       });
     })
     cityList.sort();
+    console.log(cityList);
   } 
   
   /*
@@ -117,18 +104,14 @@ const Add = () => {
   const handleClick = () => {
     dispatch({
       type: 'CREATE',
-      weather: {
+      search: {
         id: nextId.current,
-        city: searchCity.city, 
-        weather: searchCity.weather, 
-        temp: searchCity.temp, 
-        temp_min: searchCity.temp_min, 
-        temp_max: searchCity.temp_max
+        city: searchCity.city
       }
     })
     setShowWeatherCard(false);
     setAddMode(true);
-    setTimeout(() => setAddMode(false),2000);
+    setTimeout(setAddMode(false),2000);
     nextId.current += 1;
   }
 

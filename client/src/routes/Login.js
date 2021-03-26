@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import HelmetComponent from "../components/HelmetComponent";
 import NavBar from "../components/NavBar";
 import FormTemplate from "../components/FormTemplate";
@@ -21,7 +22,8 @@ const userLists = [
   },
 ];
 
-const Login = () => {
+function Login({location, history}){
+  console.log(location, history);
   const [isLogin, setIsLogin] = useState(false);
   const [userLogin, setUserLogin] = useState({
     email: "",
@@ -74,12 +76,14 @@ const Login = () => {
         if (userPassword.length === 0) {
           alert("비밀번호가 잘못되었습니다.");
         } else {
-          alert("로그인되었습니다!");
-          setIsLogin(true);
+          alert("로그인되었습니다!")
+          history.push = '/home';
+          //setIsLogin(true);
         }
       }
     }
   };
+
   return (
     <>
       <HelmetComponent title="Login"></HelmetComponent>

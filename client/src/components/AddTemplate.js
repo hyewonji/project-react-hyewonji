@@ -115,13 +115,15 @@ const CurrentWeatherWrapper = styled.div`
   padding-top: 70px;
   border-radius: 0 20px 20px 0;
   color: white;
-  background: #9591A6;
+  position: relative;
+  background-image: url("https://source.unsplash.com/random/1200x900?ocean");
   @media screen and (max-width: 768px) {
     width: 100%;
     height: 100vh;
     border-radius: 0 0 20px 20px;
   }
 `;
+
 
 const Title = styled.div`
   font-size: 28px;
@@ -194,7 +196,7 @@ function AddCurrent({ onSubmit, onChange, onClick, nowCity, searchCity, showWeat
         <AddedCard addMode={addMode}>City has been successfully added!</AddedCard> 
       </CitySearchWrapper>
 
-      <CurrentWeatherWrapper >
+      <CurrentWeatherWrapper>
         <Title>CITY OF THE MONTH</Title>
         <Date>{dateString}
           {dayforamt === 1 
