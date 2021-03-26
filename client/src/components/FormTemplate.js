@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-//import { useMediaQuery } from 'react-responsive';
 
 const InputMain = styled.main`
+    margin-top: 100px;
+    margin-bottom: 50px;
     display:flex;
-    width: 70vw;
-    height: 80vh;
+    width: 80vw;
+    height: 83vh;
 `
 
 const InputLeft = styled.div`
@@ -73,6 +74,12 @@ const InputImage = styled.div`
     }
 `
 
+const Img = styled.img`
+    width: 100%;
+    height:100%;
+    z-index:10;
+`
+
 const ChangeToSignup = styled.div`
     width: 70%;
     display: flex;
@@ -93,7 +100,9 @@ function isLogin(onPage){
 }
 
 function FormTemplate({onPage, onEmailChange, onPasswordChange, onSubmit}){
-    const Login = isLogin(onPage)
+    const Login = isLogin(onPage);
+    const [url,setUrl] = useState("https://source.unsplash.com/random/1200x900?mountain");
+
     return (
         <InputMain>
             <InputLeft>
@@ -105,7 +114,9 @@ function FormTemplate({onPage, onEmailChange, onPasswordChange, onSubmit}){
                     <Input type='password' onChange={onPasswordChange}></Input>
                     <SubmitBtn 
                         type='submit' 
-                        value= { Login ? "Login" : "Signup" } >
+                        value= { Login ? "Login" : "Signup" } 
+                        onClick={onSubmit}
+                        >
                     </SubmitBtn>
                 </InputForm>
                 <ChangeToSignup>
@@ -119,7 +130,16 @@ function FormTemplate({onPage, onEmailChange, onPasswordChange, onSubmit}){
                     </SLink>
                 </ChangeToSignup>
             </InputLeft>
-            <InputImage />
+            <InputImage>
+                    <img 
+                        src={url} 
+                        style={{
+                            'width':'100%',
+                            'height':'100%',
+                            'border-radius': '0 13px 13px 0',
+                            'background': 'center center/cover no-repeat'
+                    }}/>
+            </InputImage>
         </InputMain>
     )
 }

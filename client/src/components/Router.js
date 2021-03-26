@@ -4,6 +4,7 @@ import Login from '../routes/Login';
 import Signup from '../routes/Signup';
 import Home from '../routes/Home';
 import Add from '../routes/Add';
+import LandingPage from "./LandingPage";
 
 export default () => (
     <Router>
@@ -12,7 +13,8 @@ export default () => (
         <Route path = '/home' component={Home}></Route>
         <Route path = '/signup' component={Signup}></Route>
         <Route path = '/add' component={Add}></Route>
-        <Redirect from = "*" to = "/" />
+        <Route path = '/hello' component={LandingPage}></Route>
+        {/*<Redirect from = "*" to = "/" />*/}
       </Switch>
     </Router>
 );
