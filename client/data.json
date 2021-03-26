@@ -1,0 +1,29 @@
+{
+    "posts": [
+        {
+            "id": 1,
+            "email": "hyewon@naver.com",
+            "password": "123456",
+            "cityList":[
+                {
+                    "id": 1,
+                    "city": "Rome"
+                },
+                {
+                    "id": 2,
+                    "city": "Seoul"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "email": "hyewon@naver.com",
+            "password": "1234567",
+        },
+        {
+            "id": 3,
+            "email": "hyewon@naver.com",
+            "password": "1234568",
+        }
+    ]
+}

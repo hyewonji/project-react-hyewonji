@@ -11,14 +11,14 @@ const WeatherListBlock = styled.div`
   width: 100vw;
   margin: 100px 30px; 
   display: grid;
-  grid-template-columns: repeat(3, 400px);
+  grid-template-columns: repeat(3, 370px);
   align-items: center;
   justify-content: space-around;
   @media screen and (max-width: 1300px) {
-    grid-template-columns: repeat(2, 400px);
+    grid-template-columns: repeat(2, 370px);
   }
   @media screen and (max-width: 860px) {
-    grid-template-columns: repeat(1, 400px);
+    grid-template-columns: repeat(1, 370px);
   }
 `
 
@@ -36,12 +36,6 @@ function Home(){
         console.log(weather);
       })
     ))
-
-      /*
-      setWeather(
-        [...weather,res]
-        
-      )) */// cityName으로 weather API로부터 날씨정보 불러옴
   },[])
 
   return (

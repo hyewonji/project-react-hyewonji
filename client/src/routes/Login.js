@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import HelmetComponent from "../components/HelmetComponent";
 import NavBar from "../components/NavBar";
 import FormTemplate from "../components/FormTemplate";
@@ -21,7 +22,7 @@ const userLists = [
   },
 ];
 
-const Login = ({location, history}) => {
+function Login({location, history}){
   console.log(location, history);
   const [isLogin, setIsLogin] = useState(false);
   const [userLogin, setUserLogin] = useState({
@@ -82,6 +83,7 @@ const Login = ({location, history}) => {
       }
     }
   };
+
   return (
     <>
       <HelmetComponent title="Login"></HelmetComponent>
