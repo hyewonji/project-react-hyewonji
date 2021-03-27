@@ -63,6 +63,20 @@ const SubmitBtn = styled.input`
     }
 `
 
+const SLinkBtn = styled(Link)`
+    width: 120px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+    border:none;
+    border-radius:25px;
+    background-color: #D3D3D3;
+    color:white;
+    font-size: 17px;
+`
+
 const InputImage = styled.div`
     background: #79b8ff;
     width: 60%;
@@ -91,7 +105,7 @@ const SLink = styled(Link)`
     color: #FF3A82;
 `
 
-function isLogin(onPage){
+function handlePage(onPage){
     if(onPage === 'login'){
         return true;
     } else {
@@ -99,8 +113,8 @@ function isLogin(onPage){
     }
 }
 
-function FormTemplate({onPage, onEmailChange, onPasswordChange, onSubmit}){
-    const Login = isLogin(onPage);
+function FormTemplate({onPage, onEmailChange, onPasswordChange, onSubmit, isLogin, signup}){
+    const Login = handlePage(onPage);
     const [url,setUrl] = useState("https://source.unsplash.com/random/1200x900?mountain");
 
     return (
@@ -112,12 +126,19 @@ function FormTemplate({onPage, onEmailChange, onPasswordChange, onSubmit}){
                     </InputTitle>
                     <Input type='email' onChange={onEmailChange}></Input>
                     <Input type='password' onChange={onPasswordChange}></Input>
-                    <SubmitBtn 
-                        type='submit' 
-                        value= { Login ? "Login" : "Signup" } 
-                        onClick={onSubmit}
-                        >
-                    </SubmitBtn>
+                    {isLogin
+                        ? <SLinkBtn to='/home'>
+                                Home!
+                            </SLinkBtn>
+                        : (signup 
+                            ? <SLinkBtn to='/'>
+                                Login Page!
+                                </SLinkBtn>
+                            : <SubmitBtn 
+                                type='submit' 
+                                value= { Login ? "Login" : "Signup" } 
+                                onClick={onSubmit} />)
+                    }
                 </InputForm>
                 <ChangeToSignup>
                     { 

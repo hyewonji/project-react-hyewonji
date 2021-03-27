@@ -22,8 +22,7 @@ const userLists = [
   },
 ];
 
-function Login({location, history}){
-  console.log(location, history);
+function Login(){
   const [isLogin, setIsLogin] = useState(false);
   const [userLogin, setUserLogin] = useState({
     email: "",
@@ -45,6 +44,7 @@ function Login({location, history}){
   };
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     const email = userLogin.email;
     const password = userLogin.password;
 
@@ -62,25 +62,15 @@ function Login({location, history}){
     } else if (chkPassword(password) === false) {
       alert("Error: Minimum Password Length is 6");
     } else {
-      const userIdCheck = userLists.filter((user) => {
-        return user.email === email;
-      });
 
-      if (userIdCheck.length === 0) {
-        alert("회원정보가 존재하지 않습니다.");
-      } else {
-        const userPassword = userIdCheck.filter((user) => {
-          return user.password === password;
-        });
-
-        if (userPassword.length === 0) {
-          alert("비밀번호가 잘못되었습니다.");
-        } else {
-          alert("로그인되었습니다!")
-          history.push = '/home';
-          //setIsLogin(true);
-        }
-      }
+      let body = {
+        email: userLogin.email,
+        password: userLogin.password
+      };
+      axios.post('/api/users/login', body)
+      .then(response => {
+        response.data.loginSuccess ? setIsLogin(true) : alert(response.data.message)
+      }) 
     }
   };
 
@@ -100,3 +90,24 @@ function Login({location, history}){
 };
 
 export default Login;
+
+
+/*      const userIdCheck = userLists.filter((user) => {
+        return user.email === email;
+      });
+
+      if (userIdCheck.length === 0) {
+        alert("회원정보가 존재하지 않습니다.");
+      } else {
+        const userPassword = userIdCheck.filter((user) => {
+          return user.password === password;
+        });
+
+        if (userPassword.length === 0) {
+          alert("비밀번호가 잘못되었습니다.");
+        } else {
+          alert("로그인되었습니다!")
+          history.push = '/home';
+          //setIsLogin(true);
+        }
+      }*/
