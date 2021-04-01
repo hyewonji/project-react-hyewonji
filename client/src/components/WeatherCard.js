@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { slideUp, fadein } from './keyframe';
 import MainWeather from './MainWeather';
 
 const CardWrapper = styled.div`
@@ -16,27 +17,7 @@ const CardWrapper = styled.div`
     box-shadow: 0 0 2rem 0.15rem rgba(0, 0, 255, 0.1);
     position: relative;
     margin: 50px 0 ;    
-    animation: 1s ease-in-out slideup,1.25s ease-in-out fadein;
-
-    @keyframes slideup{
-        0% {
-            transform: translateY(50%);
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
-    
-    @keyframes fadein{
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
-
-
+    animation: 1s ease-in-out ${slideUp},2s ease-in-out ${fadein};
 `
 
 const City = styled.div`

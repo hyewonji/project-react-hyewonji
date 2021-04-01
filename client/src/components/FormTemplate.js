@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
+import { slideDown, slideUpLittle, fadein } from './keyframe';
 
 const InputMain = styled.main`
     margin-top: 100px;
@@ -8,6 +9,7 @@ const InputMain = styled.main`
     display:flex;
     width: 80vw;
     height: 83vh;
+    animation: 1.5s ease-in-out ${fadein};
 `
 
 const InputLeft = styled.div`
@@ -47,6 +49,7 @@ const Input = styled.input`
     border-radius: 30px;
     border: none;   
     box-shadow: 0 0 2rem rgba(0,0,255,.3);
+    animation: 2s ease-in-out ${slideDown},2s ease-in-out ${fadein};
 `
 
 const SubmitBtn = styled.input`
@@ -58,6 +61,7 @@ const SubmitBtn = styled.input`
     background-color: #D3D3D3;
     color:white;
     font-size: 17px;
+    animation: 2s ease-in-out ${slideDown},2s ease-in-out ${fadein};
     &:focus{
         outline:none;
     }
@@ -99,10 +103,20 @@ const ChangeToSignup = styled.div`
     display: flex;
     justify-content: space-around;
     text-decoration:none;
+    animation: 2s ease-in-out ${slideUpLittle},2s ease-in-out ${fadein};
 `
 
 const SLink = styled(Link)`
     color: #FF3A82;
+`
+
+const Greeting = styled.div`
+    font-size: 45px;
+    font-weight: 600;
+    color: white;
+    position: relative;
+    top: -200px;
+    margin-left: 20px;
 `
 
 function handlePage(onPage){
@@ -160,6 +174,7 @@ function FormTemplate({onPage, onEmailChange, onPasswordChange, onSubmit, isLogi
                             'border-radius': '0 13px 13px 0',
                             'background': 'center center/cover no-repeat'
                     }}/>
+                    <Greeting>Welcome Back!</Greeting>
             </InputImage>
         </InputMain>
     )

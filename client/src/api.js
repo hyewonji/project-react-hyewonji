@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_KEY = "ed3b96c06f6343ed844ef371d65d6a1b";
 
-export const CallApi = (request,params) => {
+export const WeatherApi = (request,params) => {
   const api = axios.create({
     baseURL: "https://api.openweathermap.org/data/2.5/",
     params: (request === 'coords' 
@@ -27,3 +27,15 @@ export const CountryApi = () => {
   const countryApi = api.get();
   return countryApi;
 };
+
+export async function postLogin({ email, password }) {
+  const url = "http://localhost:4000/login";
+  const response = await axios.post(url, {
+    data: {
+      email,
+      password,
+    },
+  });
+  const { data } = response;
+  return data;
+}

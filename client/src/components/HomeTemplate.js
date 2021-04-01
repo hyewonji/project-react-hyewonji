@@ -1,7 +1,13 @@
 import React from 'react';
+
 import styled from 'styled-components';
+
+import { slideUp, fadein } from './keyframe';
+
 import { BsPlus } from 'react-icons/bs';
+
 import { Link } from 'react-router-dom';
+
 
 const MainBox = styled.main`
     display:flex;
@@ -13,6 +19,8 @@ const MainBox = styled.main`
     border-radius:30px;
     background: white;
     text-decoration:none;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    animation: 1.20s ease-in-out ${slideUp},2s ease-in-out ${fadein};
 `
 
 const AddCity = styled.div`

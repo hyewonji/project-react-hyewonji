@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
+
 import reset from 'styled-reset';
+
 
 const GlobalStyles = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600&family=Raleway:wght@100;300;400&display=swap');
@@ -18,8 +20,8 @@ const GlobalStyles = createGlobalStyle`
         align-items:center;
         justify-content:center;
         box-sizing: border-box;
-        background: -webkit-linear-gradient(-1deg, rgb(255, 248, 129), rgb(109, 237, 255));
-        background: linear-gradient(-1deg, rgb(255, 248, 129), rgb(109, 237, 255));
+        //background: -webkit-linear-gradient(-1deg, rgb(255, 248, 129), rgb(109, 237, 255));
+        background: #4789B2;
         overflow: scroll;
     }
 

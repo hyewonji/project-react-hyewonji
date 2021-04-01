@@ -1,5 +1,5 @@
 {
-    "posts": [
+    "accounts": [
         {
             "id": 1,
             "email": "hyewon@naver.com",
@@ -19,11 +19,19 @@
             "id": 2,
             "email": "hyewon@naver.com",
             "password": "1234567",
+            "cityList":[]
         },
         {
             "id": 3,
             "email": "hyewon@naver.com",
             "password": "1234568",
+            "cityList":[]
+        }
+    ],
+    "login": [
+        {
+          "email": "mike1124@naver.com",
+          "password": "qwe123"
         }
     ]
 }

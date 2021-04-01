@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { slideDown, slideUp, fadein } from './keyframe';
 import { AiOutlineSearch } from "react-icons/ai";
 import WeatherCard from './WeatherCard';
 import MainWeather from './MainWeather';
@@ -7,9 +8,12 @@ import MainWeather from './MainWeather';
 const Main = styled.div`
   margin-top: 100px;
   margin-bottom: 50px;
+  border-radius: 20px;
   width: 90vw;
   height: 82vh;
   display: flex;
+  animation: 1.5s ease-in-out ${fadein};
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   @media screen and (max-width: 768px) {
     height: auto;
     flex-direction: column;
@@ -46,6 +50,7 @@ const SearchCityForm = styled.form`
   width: 80%;
   box-sizing: border-box;
   margin-bottom: 20px;
+  animation: 2s ease-in-out ${slideDown},2s ease-in-out ${fadein};
 `;
 
 const Input = styled.input`
@@ -117,6 +122,7 @@ const CurrentWeatherWrapper = styled.div`
   color: white;
   position: relative;
   background-image: url("https://source.unsplash.com/random/1200x900?ocean");
+  animation: 4s ease-in-out ${fadein};
   @media screen and (max-width: 768px) {
     width: 100%;
     height: 100vh;

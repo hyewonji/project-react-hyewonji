@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from "react";
+
 import styled from 'styled-components';
+
 import HelmetComponent from "../components/HelmetComponent";
+
 import HomeTemaplate from "../components/HomeTemplate";
+
 import NavBar from "../components/NavBar";
+
 import WeatherCard from '../components/WeatherCard';
-import weatherApi from '../components/WeatherApi';
+
+import WeatherData from '../components/WeatherData';
+
 import { useWeatherState } from '../WeatherContext';
+
 
 const WeatherListBlock = styled.div`
   width: 100vw;
@@ -30,7 +38,7 @@ function Home(){
 
   useEffect(()=>{
     weathers.map(item => (
-      weatherApi(item.city)
+      WeatherData(item.city)
       .then(res => {
         setWeather(weather => [...weather, res]);
         console.log(weather);

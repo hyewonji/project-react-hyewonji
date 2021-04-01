@@ -44,5 +44,5 @@
     ]
   },
   "homepage": "https://hyewonji.github.io/project-react-hyewonji",
-  "proxy" : "http://localhost:5000"
+  "proxy": "http://localhost:5000"
 }

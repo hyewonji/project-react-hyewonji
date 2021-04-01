@@ -1,5 +1,6 @@
 import React,{ useState } from 'react';
 import styled from 'styled-components';
+import { slideRight, slideLeft } from './keyframe';
 import { Link , withRouter} from 'react-router-dom';
 import { IoReorderThreeOutline } from 'react-icons/io5';
 import { HiUserCircle } from 'react-icons/hi';
@@ -16,7 +17,7 @@ const UpperNav = styled.div`
     padding: 20px 0px;
     background: white;
     font-size: 35px;
-
+    box-shadow: 0 1px 6px 0 rgb(32 33 36 / 28%);
 `
 
 const NavIconContainer = styled.div`
@@ -56,6 +57,7 @@ const NavSideMenu = styled.div`
     height: 100vh;
     width: 415px;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+    animation: 0.5s ease-in-out ${props => props.isOpen ? slideLeft : slideRight};
 `
 
 const UserProfile = styled.div`
@@ -71,8 +73,7 @@ const UserProfile = styled.div`
     color: white;
     z-index:8;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-    background: -webkit-linear-gradient(-1deg, rgb(255, 248, 129), rgb(109, 237, 255));
-    background: linear-gradient(to right, rgb(255, 248, 129), rgb(109, 237, 255));
+    background: #3d9ce5;
 `
 
 const Title = styled.div`
@@ -129,8 +130,8 @@ const NavBar = withRouter(({ location: { pathname }}) => {
                 </Link>
             </UpperNav> 
             <SpreadNav openNav={openNav}>
-                <NavBG onClick={onClick}></NavBG> 
-                <NavSideMenu>
+                {/*<NavBG onClick={onClick}></NavBG> */}
+                <NavSideMenu openNav={openNav}>
                     <UserProfile>
                         <Title >WELCOME BACK</Title>
                         <Image ><HiUserCircle /></Image>

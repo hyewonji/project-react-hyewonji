@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { CallApi } from "../api";
+import { WeatherApi } from "../api";
 import { CountryApi } from "../api";
-import weatherApi from '../components/WeatherApi';
+import weatherData from '../components/WeatherData';
 import NavBar from "../components/NavBar";
 import AddTemplate from "../components/AddTemplate";
 import { useWeatherDispatch, useWeatherNextId } from '../WeatherContext';
@@ -37,7 +37,7 @@ const Add = () => {
   const getWeather = async (request) => {
     if(request === COORDS){
       if(coords.latitude !== null && coords.longitude !== null){
-        const weatherDataByCoords = await CallApi(COORDS,coords);
+        const weatherDataByCoords = await WeatherApi(COORDS,coords);
         const { data : { 
           weather, 
           name : city,
@@ -53,7 +53,7 @@ const Add = () => {
         })
       }
     } else if (request === CITY){
-      weatherApi(inputValue)
+      weatherData(inputValue)
       .then(weatherInfo=> setSearchCity(weatherInfo))
     } 
   };
