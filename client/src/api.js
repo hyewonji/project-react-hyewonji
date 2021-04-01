@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_KEY = "ed3b96c06f6343ed844ef371d65d6a1b";
+import API_KEY from './components/ApiKey';
 
 export const WeatherApi = (request,params) => {
   const api = axios.create({
