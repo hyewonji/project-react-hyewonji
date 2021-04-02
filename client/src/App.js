@@ -2,14 +2,14 @@
 import React from "react";
 import Router from "./components/Router";
 import GlobalStyles from "./components/Globalstyles";
-import { WeatherProvider } from './WeatherContext';
+import { Provider } from './WeatherContext';
 
 function App() {
   return (
-    <WeatherProvider>
+    <Provider>
       <Router />
       <GlobalStyles />
-    </WeatherProvider>
+    </Provider>
   );
 }
 

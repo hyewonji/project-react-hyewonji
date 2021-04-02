@@ -4,7 +4,7 @@ import { CountryApi } from "../api";
 import weatherData from '../components/WeatherData';
 import NavBar from "../components/NavBar";
 import AddTemplate from "../components/AddTemplate";
-import { useWeatherDispatch, useWeatherNextId } from '../WeatherContext';
+import { useAppDispatch, useAppNextId } from '../WeatherContext';
 
 const Add = () => {
   const [coords, setCoords] = useState({
@@ -30,9 +30,7 @@ const Add = () => {
   const [addMode, setAddMode] = useState(false);
   const COORDS = 'coords';
   const CITY = 'city';
-  
-  const dispatch = useWeatherDispatch();
-  const nextId = useWeatherNextId();
+  const dispatch = useAppDispatch();
   
   const getWeather = async (request) => {
     if(request === COORDS){
@@ -103,16 +101,12 @@ const Add = () => {
 
   const handleClick = () => {
     dispatch({
-      type: 'CREATE',
-      search: {
-        id: nextId.current,
-        city: searchCity.city
-      }
+      type: 'ADD_CITY',
+      city: searchCity.city
     })
     setShowWeatherCard(false);
     setAddMode(true);
     setTimeout(setAddMode(false),2000);
-    nextId.current += 1;
   }
 
   useEffect(() => {

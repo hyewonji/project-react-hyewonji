@@ -12,7 +12,7 @@ import WeatherCard from '../components/WeatherCard';
 
 import WeatherData from '../components/WeatherData';
 
-import { useWeatherState } from '../WeatherContext';
+import { useAppState } from '../WeatherContext';
 
 
 const WeatherListBlock = styled.div`
@@ -31,20 +31,29 @@ const WeatherListBlock = styled.div`
 `
 
 function Home(){
-  const weathers = useWeatherState(); // weatherContex.js에서 id, cityName 저장돼있는 state불러옴
-  const [weather,setWeather] = useState([]) // cityName으로 weather API로부터 불러온 정보 저장(cityName, weather, temperature, temperatureMin, temperatureMax )
+  const state = useAppState(); // weatherContex.js에서 id, cityName 저장돼있는 state불러옴
+  const [citys,setCitys]=useState([]);
+  const [weather,setWeather] = useState([]); // cityName으로 weather API로부터 불러온 정보 저장(cityName, weather, temperature, temperatureMin, temperatureMax )
   const test = []
   
 
   useEffect(()=>{
-    weathers.map(item => (
-      WeatherData(item.city)
+    state.some(user => {
+      if(user.login){
+        setCitys(user.city);
+        return true;
+      };
+    });
+  },[]);
+
+  useEffect(() => {
+    citys.map(city => {
+      WeatherData(city)
       .then(res => {
         setWeather(weather => [...weather, res]);
-        console.log(weather);
       })
-    ))
-  },[])
+    })
+  }, [citys])
 
   return (
     <>

@@ -43,6 +43,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://hyewonji.github.io/project-react-hyewonji",
-  "proxy": "http://localhost:5000"
+  "homepage": "https://hyewonji.github.io/project-react-hyewonji"
 }
