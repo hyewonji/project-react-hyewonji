@@ -4,6 +4,7 @@ import { slideRight, slideLeft } from './keyframe';
 import { Link , withRouter} from 'react-router-dom';
 import { IoReorderThreeOutline } from 'react-icons/io5';
 import { HiUserCircle } from 'react-icons/hi';
+import { useAppState } from '../WeatherContext';
 
 const UpperNav = styled.div`
     position: fixed;
@@ -115,10 +116,17 @@ const Item = styled.li`
 `
 
 const NavBar = withRouter(({ location: { pathname }}) => {
+    let state = useAppState();
+
     const [openNav,setOpenNav] = useState(false);
     const onClick = () => {
         setOpenNav(!openNav);
     };
+
+    const handleLogout = () => {
+        state.login = {};
+    }
+
     return (
         <>
             <UpperNav>
@@ -146,7 +154,7 @@ const NavBar = withRouter(({ location: { pathname }}) => {
                             <Link to="/add" >Add City</Link>
                         </Item>
                         <Item current={pathname === '/'}>
-                            <Link to="/login" >Logout</Link>
+                            <Link to="/" onClick={handleLogout}>Logout</Link>
                         </Item>
                     </List>
                 </NavSideMenu>

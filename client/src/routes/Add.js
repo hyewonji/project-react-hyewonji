@@ -4,7 +4,7 @@ import { CountryApi } from "../api";
 import weatherData from '../components/WeatherData';
 import NavBar from "../components/NavBar";
 import AddTemplate from "../components/AddTemplate";
-import { useAppDispatch, useAppNextId } from '../WeatherContext';
+import { useAppDispatch } from '../WeatherContext';
 
 const Add = () => {
   const [coords, setCoords] = useState({

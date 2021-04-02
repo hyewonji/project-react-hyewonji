@@ -1,33 +1,43 @@
 import React, { createContext, useContext, useReducer, useRef } from 'react';
 
-const initialList = [
-    {
+const initialList = {
+    accounts: [
+        {
+            id: 1,
+            email: "hyewon@naver.com",
+            password: "123456",
+            city: ['Rome','Paris']
+        },
+        {
+            id: 2,
+            email: "hyewon@naver.com",
+            password: "1234567",
+            city: ['Seoul']
+        },
+        {
+            id: 3,
+            email: "hyewon@naver.com",
+            password: "1234568",
+            city: []
+        }
+    ],
+    login : {
         id: 1,
-        login: true,
         email: "hyewon@naver.com",
         password: "123456",
         city: ['Rome','Paris']
-    },
-    {
-        id: 2,
-        login: false,
-        email: "hyewon@naver.com",
-        password: "1234567",
-        city: ['Seoul']
-    },
-    {
-        id: 3,
-        login: false,
-        email: "hyewon@naver.com",
-        password: "1234568",
-        city: []
     }
-]
+}
 
 function Reducer(state, action){
     switch(action.type){
         case 'ADD_CITY':
-            return state[0].city.push(action.city);
+            state.login.city.push(action.city);
+            state.accounts[state.login.id-1] = state.login;
+            return state;
+        case 'POST_LOGIN':
+            state.login = action.login;
+            return state;
         default:
             throw new Error('Unhandled action type: ${action.type}');
     }
@@ -39,6 +49,7 @@ const NextIdContext = createContext();
 
 export function Provider({ children }){
     const [state, dispatch] = useReducer(Reducer, initialList)
+    console.log(state);
     const nextId = useRef(3);
 
     return(

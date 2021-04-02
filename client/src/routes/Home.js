@@ -32,28 +32,29 @@ const WeatherListBlock = styled.div`
 
 function Home(){
   const state = useAppState(); // weatherContex.js에서 id, cityName 저장돼있는 state불러옴
-  const [citys,setCitys]=useState([]);
+  const [citys,setCitys]=useState(null);
   const [weather,setWeather] = useState([]); // cityName으로 weather API로부터 불러온 정보 저장(cityName, weather, temperature, temperatureMin, temperatureMax )
-  const test = []
   
 
   useEffect(()=>{
-    state.some(user => {
-      if(user.login){
-        setCitys(user.city);
-        return true;
-      };
-    });
+    console.log(state.login);
+    console.log(state.login.city);
+    setCitys(state.login.city);
+
   },[]);
 
-  useEffect(() => {
-    citys.map(city => {
-      WeatherData(city)
-      .then(res => {
-        setWeather(weather => [...weather, res]);
-      })
-    })
-  }, [citys])
+  useEffect(()=>{
+    console.log(citys);
+    if(citys){
+      citys.map(city => {
+        WeatherData(city)
+        .then(res => {
+          console.log(res);
+          setWeather(weather => [...weather, res]);
+        })
+    })}
+  },[citys])
+
 
   return (
     <>
