@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { slideDown, slideUpLittle, fadein } from './keyframe';
+import { slideDown, slideUpLittle, slideRight, fadein } from './keyframe';
 
 const InputMain = styled.main`
     margin-top: 100px;
@@ -9,7 +9,7 @@ const InputMain = styled.main`
     display:flex;
     width: 80vw;
     height: 83vh;
-    animation: 1.5s ease-in-out ${fadein};
+    animation: 5s ease-in-out ${fadein};
 `
 
 const InputLeft = styled.div`
@@ -20,6 +20,7 @@ const InputLeft = styled.div`
     width: 40%;
     border-radius: 13px 0 0 13px;
     background-color: #FFFFFF;
+    z-index: 10;
     @media screen and (max-width: 768px) {
         width:100%;
         border-radius: 13px;
@@ -76,13 +77,13 @@ const SLinkBtn = styled(Link)`
     margin-bottom: 50px;
     border:none;
     border-radius:25px;
-    background-color: #D3D3D3;
+    background: #31feae;
     color:white;
     font-size: 17px;
 `
 
 const InputImage = styled.div`
-    background: #79b8ff;
+    background: #FFFFFF;
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -95,7 +96,9 @@ const InputImage = styled.div`
 const Img = styled.img`
     width: 100%;
     height:100%;
-    z-index:10;
+    border-radius: '0 13px 13px 0';
+    background: 'center center/cover no-repeat';
+    animation: ${fadein} 5s ease-in-out;
 `
 
 const ChangeToSignup = styled.div`
@@ -114,9 +117,10 @@ const Greeting = styled.div`
     font-size: 45px;
     font-weight: 600;
     color: white;
-    position: relative;
-    top: -200px;
-    margin-left: 20px;
+    position: absolute;
+    bottom: 230px;
+    margin-left: 35px;
+    animation: ${slideRight} 1.5s ease-in-out, ${fadein} 2s ease-out;
 `
 
 function handlePage(onPage){
@@ -145,8 +149,8 @@ function FormTemplate({onPage, onEmailChange, onPasswordChange, onSubmit, isLogi
                                 Home!
                             </SLinkBtn>
                         : (signup 
-                            ? <SLinkBtn to='/'>
-                                Login Page!
+                            ? <SLinkBtn to='/home'>
+                                Home!
                                 </SLinkBtn>
                             : <SubmitBtn 
                                 type='submit' 
@@ -166,7 +170,7 @@ function FormTemplate({onPage, onEmailChange, onPasswordChange, onSubmit, isLogi
                 </ChangeToSignup>
             </InputLeft>
             <InputImage>
-                    <img 
+                    <Img 
                         src={url} 
                         style={{
                             'width':'100%',

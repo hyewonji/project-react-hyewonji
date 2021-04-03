@@ -3,6 +3,7 @@ import axios from 'axios';
 import FormTemplate from "../components/FormTemplate";
 import NavBar from "../components/NavBar";
 import HelmetComponent from "../components/HelmetComponent";
+import { useAppState, useAppDispatch, useAppNextId } from '../WeatherContext';
 
 function Signup(){
   const [signup,setSignup] = useState(false);
@@ -16,6 +17,11 @@ function Signup(){
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+
+
+  const dispatch = useAppDispatch();
+  const nextId = useAppNextId();
+  const state =useAppDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,16 +40,23 @@ function Signup(){
     } else if (chkPassword(password) === false) {
       alert("Error: Minimum Password Length is 6");
     } else {
-
-      let body = {
+      const userInfo = {
+        id: nextId,
         email: email,
-        password: password
-      };
+        password: password,
+        city: []
+      }
 
-      axios.post('/api/users/register', body)
-      .then(response => {
-        response.data.success ? setSignup(true) : alert('Error occur')
-      }) 
+      dispatch({
+        type: "POST_SIGNUP",
+        signup: userInfo
+      })
+      dispatch({
+        type: "POST_LOGIN",
+        login: userInfo
+      })
+
+      setSignup(true);
     }
   };
 

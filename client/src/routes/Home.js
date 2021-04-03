@@ -37,14 +37,10 @@ function Home(){
   
 
   useEffect(()=>{
-    console.log(state.login);
-    console.log(state.login.city);
     setCitys(state.login.city);
-
   },[]);
 
   useEffect(()=>{
-    console.log(citys);
     if(citys){
       citys.map(city => {
         WeatherData(city)

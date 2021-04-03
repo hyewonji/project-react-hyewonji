@@ -22,10 +22,6 @@ const initialList = {
         }
     ],
     login : {
-        id: 1,
-        email: "hyewon@naver.com",
-        password: "123456",
-        city: ['Rome','Paris']
     }
 }
 
@@ -38,6 +34,9 @@ function Reducer(state, action){
         case 'POST_LOGIN':
             state.login = action.login;
             return state;
+        case 'POST_SIGNUP':
+            state.accounts.push(action.signup);
+            return state;
         default:
             throw new Error('Unhandled action type: ${action.type}');
     }
@@ -49,8 +48,7 @@ const NextIdContext = createContext();
 
 export function Provider({ children }){
     const [state, dispatch] = useReducer(Reducer, initialList)
-    console.log(state);
-    const nextId = useRef(3);
+    const nextId = useRef(4);
 
     return(
         <StateContext.Provider value={state}>

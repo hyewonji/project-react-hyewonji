@@ -1,9 +1,15 @@
 import React,{ useState } from 'react';
+
 import styled from 'styled-components';
+
 import { slideRight, slideLeft } from './keyframe';
+
 import { Link , withRouter} from 'react-router-dom';
+
 import { IoReorderThreeOutline } from 'react-icons/io5';
+
 import { HiUserCircle } from 'react-icons/hi';
+
 import { useAppState } from '../WeatherContext';
 
 const UpperNav = styled.div`
