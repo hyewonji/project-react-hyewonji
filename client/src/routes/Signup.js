@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import axios from 'axios';
+
 import FormTemplate from "../components/FormTemplate";
-import NavBar from "../components/NavBar";
+
 import HelmetComponent from "../components/HelmetComponent";
-import { useAppState, useAppDispatch, useAppNextId } from '../WeatherContext';
+
+import { useAppDispatch, useAppNextId } from '../WeatherContext';
+
 
 function Signup(){
   const [signup,setSignup] = useState(false);
@@ -21,7 +23,6 @@ function Signup(){
 
   const dispatch = useAppDispatch();
   const nextId = useAppNextId();
-  const state =useAppDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,7 +64,6 @@ function Signup(){
   return (
     <>
       <HelmetComponent title="Signup" />
-      <NavBar />
       <FormTemplate 
         onEmailChange={handleEmailChange}
         onPasswordChange={handlePasswordChange}

@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import HelmetComponent from "../components/HelmetComponent";
-
-import NavBar from "../components/NavBar";
 
 import FormTemplate from "../components/FormTemplate";
 
@@ -13,7 +11,6 @@ import { useAppState, useAppDispatch } from "../WeatherContext";
 function Login(){
   
   const state = useAppState();
-  console.log(state);
   const accounts = state.accounts;
 
   const dispatch = useAppDispatch();
@@ -77,8 +74,7 @@ function Login(){
 
   return (
     <>
-      <HelmetComponent title="Login"></HelmetComponent>
-      <NavBar />
+      <HelmetComponent title="Login" />
       <FormTemplate
         onPage="login"
         onEmailChange={handleEmailChange}

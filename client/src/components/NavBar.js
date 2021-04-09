@@ -12,6 +12,7 @@ import { HiUserCircle } from 'react-icons/hi';
 
 import { useAppState } from '../WeatherContext';
 
+
 const UpperNav = styled.div`
     position: fixed;
     display:flex;
@@ -32,7 +33,7 @@ const NavIconContainer = styled.div`
     top: 0;
     left: 0;
     padding: 10px 20px;
-    z-index: 10;
+    z-index: 15;
     &:hover{
         cursor: pointer;
     }
@@ -49,7 +50,7 @@ const SpreadNav = styled.nav`
     height: 100vh;
     width: 100vw;
     display: ${props => props.openNav ? 'block' : 'none'};
-    z-index: ${props => props.openNav ? 9 : 0};
+    z-index: ${props => props.openNav ? 14 : 0};
     background-color: ${props => props.openNav ? 'rgba(0,0,0,0.2)' : 'none'};
 `
 
@@ -121,9 +122,9 @@ const Item = styled.li`
     border-bottom: ${props => props.current ? 'solid 1.5px #5697ff' : 'transparent'};
 `
 
-const NavBar = withRouter(({ location: { pathname }}) => {
+function NavBar({ location: { pathname }}){
     let state = useAppState();
-
+    
     const [openNav,setOpenNav] = useState(false);
     const onClick = () => {
         setOpenNav(!openNav);
@@ -152,7 +153,7 @@ const NavBar = withRouter(({ location: { pathname }}) => {
                         <Email ></Email>
                         <FreePlan >Free Plan</FreePlan>
                     </UserProfile>
-                    <List>
+                    <List onClick={onClick}>
                         <Item current={pathname === '/home'}>
                             <Link to="/home" >Home</Link>
                         </Item>
@@ -165,9 +166,8 @@ const NavBar = withRouter(({ location: { pathname }}) => {
                     </List>
                 </NavSideMenu>
             </SpreadNav>
-            
         </>
     )
-})
+}
 
-export default NavBar;
+export default withRouter(NavBar);

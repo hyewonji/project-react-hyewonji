@@ -6,8 +6,6 @@ import HelmetComponent from "../components/HelmetComponent";
 
 import HomeTemaplate from "../components/HomeTemplate";
 
-import NavBar from "../components/NavBar";
-
 import WeatherCard from '../components/WeatherCard';
 
 import WeatherData from '../components/WeatherData';
@@ -55,7 +53,6 @@ function Home(){
   return (
     <>
       <HelmetComponent title="Home" />
-      <NavBar></NavBar>
       <WeatherListBlock>
         {weather.map(item => (  // weather에 저장된 정보로 WeatherCard 호출(?)
             <WeatherCard

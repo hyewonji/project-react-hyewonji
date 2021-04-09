@@ -1,9 +1,15 @@
 import React from "react";
+
 import styled from "styled-components";
-import { slideDown, slideUp, fadein } from './keyframe';
+
+import { slideDown, fadein } from './keyframe';
+
 import { AiOutlineSearch } from "react-icons/ai";
+
 import WeatherCard from './WeatherCard';
+
 import MainWeather from './MainWeather';
+
 
 const Main = styled.div`
   margin-top: 100px;
@@ -106,7 +112,12 @@ const FollowBtn = styled.div`
 `
 
 const AddedCard = styled.div`
-  display: ${props => props.addMode ? 'display': 'none'};
+  padding: 20px 25px;
+  margin: 50px 0;
+  border-radius: 10px;
+  font-size: 25px;
+  color: #2e8ed6;
+  display: ${props => props.addMode !== null ? 'display': 'none'};
 `
 
 
@@ -125,7 +136,7 @@ const CurrentWeatherWrapper = styled.div`
   animation: 4s ease-in-out ${fadein};
   @media screen and (max-width: 768px) {
     width: 100%;
-    height: 100vh;
+    height: 80vh;
     border-radius: 0 0 20px 20px;
   }
 `;
@@ -148,7 +159,8 @@ const Image = styled.div`
   width: 100px;
   height: 100px;
   padding: 10px;
-  margin: 60px;
+  margin:50px 70px 80px 0px;
+  margin-left: 0px;
   background-size: contain;
   @media screen and (max-width: 768px) {
     margin: 30px;
@@ -171,14 +183,17 @@ const Description = styled.div`
 `;
 
 function AddCurrent({ onSubmit, onChange, onClick, nowCity, searchCity, showWeatherCard, addMode }) {
+  
   const today = new window.Date();
   const dateString = today.toLocaleDateString("en-US", {
     weekday: "long",
     day: "numeric",
     month: "short"
   });
+
   const dayforamt = dateString.day%10;
   const { city, weather, temp : temp } = nowCity;
+
   return (
     <Main>
       <CitySearchWrapper>
@@ -199,7 +214,7 @@ function AddCurrent({ onSubmit, onChange, onClick, nowCity, searchCity, showWeat
           <WeatherCard searchCity={searchCity}/>
         </WeatherCardContainer>
         <FollowBtn showWeatherCard={showWeatherCard} onClick={onClick}>ADD CITY +</FollowBtn>
-        <AddedCard addMode={addMode}>City has been successfully added!</AddedCard> 
+        <AddedCard addMode={addMode}>{addMode === 'Success' ? 'City has been successfully added!' : 'Login First!'}</AddedCard> 
       </CitySearchWrapper>
 
       <CurrentWeatherWrapper>

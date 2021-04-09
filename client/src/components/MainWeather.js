@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const WeatherCard = (state) => {
         if (state === 'Sunny' || state === 'Clear'){
                 return (

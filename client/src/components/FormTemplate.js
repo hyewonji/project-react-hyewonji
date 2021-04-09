@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+
+import styled from 'styled-components';
+
 import { Link } from 'react-router-dom';
+
 import { slideDown, slideUpLittle, slideRight, fadein } from './keyframe';
+
 
 const InputMain = styled.main`
     margin-top: 100px;
@@ -175,7 +179,7 @@ function FormTemplate({onPage, onEmailChange, onPasswordChange, onSubmit, isLogi
                         style={{
                             'width':'100%',
                             'height':'100%',
-                            'border-radius': '0 13px 13px 0',
+                            'borderRadius': '0 13px 13px 0',
                             'background': 'center center/cover no-repeat'
                     }}/>
                     <Greeting>Welcome Back!</Greeting>

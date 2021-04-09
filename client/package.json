@@ -1,5 +1,5 @@
 {
-  "name": "weather_app",
+  "name": "world-wide-weather",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -43,5 +43,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://hyewonji.github.io/project-react-hyewonji"
+  "homepage": "https://hyewonji.github.io/world-wide-weather"
 }
