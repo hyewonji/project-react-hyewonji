@@ -1,7 +1,6 @@
 import { WeatherApi } from "../api";
 
 async function weatherApi( cityName ){
-    console.log(cityName)
     const weatherDataByCity = await WeatherApi('city',cityName);
     const { data : {
     weather, 

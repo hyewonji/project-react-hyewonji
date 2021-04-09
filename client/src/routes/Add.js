@@ -75,7 +75,6 @@ const Add = () => {
       });
     })
     cityList.sort();
-    console.log(cityList);
   } 
   
   /*

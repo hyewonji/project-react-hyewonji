@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import styled from 'styled-components';
 
@@ -137,7 +137,7 @@ function handlePage(onPage){
 
 function FormTemplate({onPage, onEmailChange, onPasswordChange, onSubmit, isLogin, signup}){
     const Login = handlePage(onPage);
-    const [url,setUrl] = useState("https://source.unsplash.com/random/1200x900?mountain");
+    const url = "https://source.unsplash.com/random/1200x900?mountain";
 
     return (
         <InputMain>
@@ -174,14 +174,7 @@ function FormTemplate({onPage, onEmailChange, onPasswordChange, onSubmit, isLogi
                 </ChangeToSignup>
             </InputLeft>
             <InputImage>
-                    <Img 
-                        src={url} 
-                        style={{
-                            'width':'100%',
-                            'height':'100%',
-                            'borderRadius': '0 13px 13px 0',
-                            'background': 'center center/cover no-repeat'
-                    }}/>
+                    <Img src={url} />
                     <Greeting>Welcome Back!</Greeting>
             </InputImage>
         </InputMain>

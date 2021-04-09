@@ -54,13 +54,6 @@ const SpreadNav = styled.nav`
     background-color: ${props => props.openNav ? 'rgba(0,0,0,0.2)' : 'none'};
 `
 
-const NavBG = styled.div`
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-`
-
 const NavSideMenu = styled.div`
     height: 100vh;
     width: 415px;
@@ -145,12 +138,11 @@ function NavBar({ location: { pathname }}){
                 </Link>
             </UpperNav> 
             <SpreadNav openNav={openNav}>
-                {/*<NavBG onClick={onClick}></NavBG> */}
                 <NavSideMenu openNav={openNav}>
                     <UserProfile>
-                        <Title >WELCOME BACK</Title>
-                        <Image ><HiUserCircle /></Image>
-                        <Email ></Email>
+                        <Title>WELCOME BACK</Title>
+                        <Image><HiUserCircle /></Image>
+                        <Email></Email>
                         <FreePlan >Free Plan</FreePlan>
                     </UserProfile>
                     <List onClick={onClick}>

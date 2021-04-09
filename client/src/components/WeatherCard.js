@@ -67,7 +67,6 @@ const TempM = styled.div`
 `
 
 const WeatherCard = ({searchCity}) => {
-    console.log(searchCity);
     const { city, weather, temp, temp_min, temp_max } = searchCity;
     return (
         <CardWrapper>

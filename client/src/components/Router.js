@@ -12,8 +12,6 @@ import Home from '../routes/Home';
 
 import Add from '../routes/Add';
 
-import AuthRoute from './AuthRoute';
-
 import { useAppState } from "../WeatherContext";
 
 
