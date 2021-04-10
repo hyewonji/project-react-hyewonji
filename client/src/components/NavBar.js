@@ -28,12 +28,13 @@ const UpperNav = styled.div`
     box-shadow: 0 1px 6px 0 rgb(32 33 36 / 28%);
 `
 
-const NavIconContainer = styled.div`
+const NavIcon = styled(IoReorderThreeOutline)`
     position: absolute;
-    top: 0;
+    top: 0px;
     left: 0;
-    padding: 10px 20px;
+    margin: 15px 0 0 20px;
     z-index: 15;
+    color: ${props => props.openNav ? 'white' : 'black'};
     &:hover{
         cursor: pointer;
     }
@@ -83,7 +84,7 @@ const Title = styled.div`
 
 const Image = styled.div`
     font-size: 80px;
-    color: #A8A4D2;
+    color: white;
     padding-top: 10px;
 `
 
@@ -130,9 +131,7 @@ function NavBar({ location: { pathname }}){
     return (
         <>
             <UpperNav>
-                <NavIconContainer onClick={onClick}>
-                    <IoReorderThreeOutline />
-                </NavIconContainer>
+                <NavIcon onClick={onClick} openNav={openNav} />
                 <Link to="/home">
                     <HompageTitle>TODAY</HompageTitle>
                 </Link>

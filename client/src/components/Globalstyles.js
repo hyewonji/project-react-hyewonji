@@ -4,12 +4,13 @@ import reset from 'styled-reset';
 
 
 const GlobalStyles = createGlobalStyle`
-    //@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600&family=Raleway:wght@100;300;400&display=swap');
 
     ${reset};
+    
     *{
         box-sizing: border-box;
     }
+
     html,
     body{
         font-family: 'Raleway', sans-serif;

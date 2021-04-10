@@ -100,8 +100,8 @@ const InputImage = styled.div`
 const Img = styled.img`
     width: 100%;
     height:100%;
-    border-radius: '0 13px 13px 0';
-    background: 'center center/cover no-repeat';
+    border-radius: 0 13px 13px 0;
+    background: center center/cover no-repeat;
     animation: ${fadein} 5s ease-in-out;
 `
 
