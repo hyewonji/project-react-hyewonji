@@ -27,15 +27,3 @@ export const CountryApi = () => {
   const countryApi = api.get();
   return countryApi;
 };
-
-export async function postLogin({ email, password }) {
-  const url = "http://localhost:4000/login";
-  const response = await axios.post(url, {
-    data: {
-      email,
-      password,
-    },
-  });
-  const { data } = response;
-  return data;
-}

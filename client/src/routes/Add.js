@@ -30,7 +30,8 @@ const Add = () => {
     temp_min: 0,
     temp_max: 0
   })
-  const [cityList,setCityList] = useState([]);
+  const [cityList, setCityList] = useState(null);
+  let cities = [];
   const [inputValue,setInputValue] = useState(null);
   //const [inputList,setInputList] = useState([]);
   
@@ -70,11 +71,13 @@ const Add = () => {
       const { data } = res
       data.forEach(country => {
         if(country.capital.length){
-          cityList.push(country.capital);
+          cities.push(country.capital);
         }
       });
-    })
-    cityList.sort();
+    }).then(res => {
+        setCityList(cities.sort());
+      })
+
   } 
   
   /*
