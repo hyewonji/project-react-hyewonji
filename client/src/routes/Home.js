@@ -54,8 +54,9 @@ function Home(){
     <>
       <HelmetComponent title="Home" />
       <WeatherListBlock>
-        {weather.map(item => (  // weather에 저장된 정보로 WeatherCard 호출(?)
+        {weather.map((item,i) => (  // weather에 저장된 정보로 WeatherCard 호출(?)
             <WeatherCard
+              key = {i}
               searchCity = {item}
             />
           ))}

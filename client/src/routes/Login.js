@@ -8,14 +8,13 @@ import { useAppState, useAppDispatch } from "../WeatherContext";
 
 
 
-function Login(){
+function Login({ history }){
   
   const state = useAppState();
   const accounts = state.accounts;
 
   const dispatch = useAppDispatch();
 
-  const [isLogin, setIsLogin] = useState(false);
   const [email,setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -62,9 +61,8 @@ function Login(){
             type: 'POST_LOGIN', 
             login: userPassword[0]
           });
-          setIsLogin(true);
           alert(`Hello ${email} :)`);
-
+          history.push('/home')
         }
       }
 
@@ -80,7 +78,6 @@ function Login(){
         onEmailChange={handleEmailChange}
         onPasswordChange={handlePasswordChange}
         onSubmit={handleSubmit}
-        isLogin={isLogin}
       ></FormTemplate>
     </>
   );

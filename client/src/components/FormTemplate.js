@@ -135,7 +135,8 @@ function handlePage(onPage){
     }
 }
 
-function FormTemplate({onPage, onEmailChange, onPasswordChange, onSubmit, isLogin, signup}){
+function FormTemplate({ onPage, onEmailChange, onPasswordChange, onSubmit }){
+
     const Login = handlePage(onPage);
     const url = "https://source.unsplash.com/random/1200x900?mountain";
 
@@ -148,19 +149,10 @@ function FormTemplate({onPage, onEmailChange, onPasswordChange, onSubmit, isLogi
                     </InputTitle>
                     <Input type='email' onChange={onEmailChange}></Input>
                     <Input type='password' onChange={onPasswordChange}></Input>
-                    {isLogin
-                        ? <SLinkBtn to='/home'>
-                                Home!
-                            </SLinkBtn>
-                        : (signup 
-                            ? <SLinkBtn to='/home'>
-                                Home!
-                                </SLinkBtn>
-                            : <SubmitBtn 
-                                type='submit' 
-                                value= { Login ? "Login" : "Signup" } 
-                                onClick={onSubmit} />)
-                    }
+                    <SubmitBtn 
+                        type='submit' 
+                        value= { Login ? "Login" : "Signup" } 
+                        onClick={onSubmit} />
                 </InputForm>
                 <ChangeToSignup>
                     { 
