@@ -72,20 +72,6 @@ const SubmitBtn = styled.input`
     }
 `
 
-const SLinkBtn = styled(Link)`
-    width: 120px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 50px;
-    border:none;
-    border-radius:25px;
-    background: #31feae;
-    color:white;
-    font-size: 17px;
-`
-
 const InputImage = styled.div`
     background: #FFFFFF;
     width: 60%;

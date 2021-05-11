@@ -39,7 +39,7 @@ function Reducer(state, action){
             state.accounts.push(action.signup);
             return state;
         default:
-            throw new Error('Unhandled action type: ${action.type}');
+            throw new Error(`Unhandled action type: ${action.type}`);
     }
 }
 

@@ -192,7 +192,7 @@ function AddCurrent({ onSubmit, onChange, onClick, nowCity, searchCity, showWeat
   });
 
   const dayforamt = dateString.day%10;
-  const { city, weather, temp : temp } = nowCity;
+  const { city, weather, temp } = nowCity;
 
   return (
     <Main>
